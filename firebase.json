@@ -13,7 +13,8 @@
     "predeploy": [
       "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" run build"
-    ]
+    ],
+    "source": "functions"
   },
   "hosting": {
     "public": "build",
@@ -21,6 +22,12 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   },
   "storage": {
