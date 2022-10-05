@@ -1,0 +1,22 @@
+.missionGroups {
+  width:70%;
+  margin-inline: auto;
+}
+
+.missionGroupName {
+  margin-bottom: 5px;;
+}
+
+.missionGroupPoints {
+  width:60%;
+  margin-inline: auto;
+  margin-bottom:5px;
+}
+
+.missionNowPoint {
+  font-size:1.8em;
+}
+
+.missionNextPoint{
+  margin:20px;
+}

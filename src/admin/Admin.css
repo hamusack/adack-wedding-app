@@ -1,0 +1,19 @@
+.titleRow {
+  display:flex;
+}
+
+.adminCotainer {
+  margin-left:40px;
+}
+
+.gameControlContainer {
+  margin-bottom:40px;
+}
+
+.groupInfoContainer {
+  margin-bottom:20px;
+}
+
+.missionListHeader {
+  display:flex;
+}
