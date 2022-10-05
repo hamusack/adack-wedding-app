@@ -1,8 +1,6 @@
 import { db } from 'common/Firebase'
 import { doc , updateDoc} from 'firebase/firestore'
 import { useState, useEffect, useContext } from 'react';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import MaskDialog from 'common/components/MaskDialog'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { LoggedInContext } from "common/components/AuthContextProvider";
@@ -22,6 +20,7 @@ const Mission = ({ missions }) => {
     if (missions == null) {
       navigation('/');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

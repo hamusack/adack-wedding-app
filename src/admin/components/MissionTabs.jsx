@@ -1,14 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { formControlClasses } from "@mui/material";
 import Const from "constants/common"
 import "admin/components/MissionTabs.css"
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { db } from 'common/Firebase'
 import { doc , updateDoc} from 'firebase/firestore'
 
@@ -59,6 +57,7 @@ const MissionTabs = ({ missionGroups, missions }) => {
       missions.map((v) => {
         const obj = { ...v, status:Const.MISSION_STATUS[v.status],};
         edited.push(obj);
+        return null;
       })
       return edited;
     }

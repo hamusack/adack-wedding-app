@@ -1,10 +1,7 @@
 import { db } from 'common/Firebase'
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useState, useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { doc ,  onSnapshot, updateDoc, collection, orderBy, query } from 'firebase/firestore'
-import { AuthInfoContext } from 'common/components/AuthContextProvider';
+import { useState, useEffect } from 'react';
+import { doc ,  onSnapshot,  collection, orderBy, query } from 'firebase/firestore'
 import 'admin/Admin.css'
 import MissionTabs from './components/MissionTabs';
 
@@ -12,8 +9,6 @@ const Admin = () => {
   const [game, setGame] = useState(null);
   const [missions, setMissions] = useState(null);
   const [missionGroups, setMissionGroups] = useState(null);
-  const [users, setUsers] = useState(null);
-  const [viewMissions, setviewMissions] = useState(null);
 
   useEffect(() => {
     const gameRef = doc(db, 'game','zJAO26VHA79cVuL3fuoM');
