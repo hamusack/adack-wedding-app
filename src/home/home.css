@@ -1,0 +1,14 @@
+body {
+  background-color: #030244;
+  color:white;
+}
+.mainContainer {
+  width:100%;
+}
+
+.SubTitleLabel {
+  padding:0px 10px;
+  background-color:#bea155;
+  color:#222;
+}
+

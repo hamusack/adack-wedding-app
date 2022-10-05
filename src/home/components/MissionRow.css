@@ -1,0 +1,14 @@
+.missionRow {
+  margin:0px 0px 5px 15px ;
+  display:flex;
+  align-items: center;
+}
+
+.missionRowPoint {
+  width:12%;
+}
+
+.missionRowTitle {
+  margin-right:10px;
+  width:65%;
+}

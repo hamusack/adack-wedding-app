@@ -1,0 +1,41 @@
+.moveButton {
+  display:flex;
+  justify-content: flex-end;
+}
+
+.missionListContainer {
+  width:900px;
+}
+
+.missionCol {
+  margin-right:5px;
+}
+
+.groupCol {
+  margin-right:15px;
+}
+
+.missionTitle {
+  width:300px;
+}
+
+.missionPoint {
+  width:30px;
+}
+
+.missioKind {
+  width:30px;
+}
+
+.missionStatus {
+  width:70px;
+}
+
+.missionGroup {
+  width:200px;
+}
+
+.missionId {
+  width:100px;
+}
+
