@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate()
   const [name, setName] = useState("");
   const [userId, setUserId] = useState(useParams()['*']);
+  // eslint-disable-next-line no-unused-vars
   const [authInfo, setAuthInfo] = useContext(AuthInfoContext);
 
   const updateUserName = async () => {
@@ -38,6 +39,7 @@ const Login = () => {
       }
     });
     return unsub;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (userId === "") {
