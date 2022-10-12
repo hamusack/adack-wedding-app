@@ -1,23 +1,29 @@
 import * as React from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import { Button } from '@mui/material';
-import styled from 'styled-components';
-
-const DialogStyle = styled.div
-`
-  white-space: pre-wrap;
-`
+import 'common/components/MaskDialog.css'
 
 function MaskDialog(props) {
   const { onClose, open, title, value } = props;
 
 
   return (
-    <Dialog onClose={onClose} open={open}>
+    <Dialog
+      onClose={onClose}
+      open={open}
+      PaperProps={{
+        style: {
+          backgroundColor:"#030244",
+          textAlign: "center",
+          border: "solid 7px #fff"
+        },
+      }}
+    >
       <DialogTitle>{title}</DialogTitle>
-      <DialogStyle><div>{value}</div></DialogStyle>
-      <Button onClick={onClose}>OK</Button>
+      <div className="dialogContainer">
+        <span >{value.split('\n').map((t,index) => (<span key={index}>{t}<br /></span>))}</span>
+        <button className="dialogButton" onClick={onClose}>OK</button>
+      </div>
     </Dialog>
   );
 }

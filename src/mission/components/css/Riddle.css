@@ -1,0 +1,10 @@
+.riddleAnswer {
+  width:80%;
+  height:50px;
+  margin-bottom: 20px;
+  font-size:1.2em;
+}
+
+.riddleInput {
+  text-align: center;
+}

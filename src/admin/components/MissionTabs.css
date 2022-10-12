@@ -16,7 +16,7 @@
 }
 
 .missionTitle {
-  width:300px;
+  width:70%;
 }
 
 .missionPoint {
@@ -39,3 +39,11 @@
   width:100px;
 }
 
+.missionEditDialogContainer {
+  width:500px;
+}
+
+.formContainer {
+  width:80%;
+  margin-left:20px;
+}

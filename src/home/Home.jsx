@@ -1,32 +1,58 @@
 import MissionGroups from 'home/components/MissionGroups'
-import GroupMissionList  from 'home/components/GroupMissionList'
-import { LoggedInContext } from "common/components/AuthContextProvider";
+import GroupMissionList from 'home/components/GroupMissionList'
+import { AuthInfoContext, LoggedInContext } from "common/components/AuthContextProvider";
 import { useContext } from 'react';
 import 'home/home.css';
+import { clearMissionFilter } from 'common/CommonFunctions'
 
-const Home = ({ missions, missionGroups }) => {
+const Home = ({ game, missions, answereds }) => {
   const isLoggedIn = useContext(LoggedInContext);
-  const missionGroupsTag = missionGroups === null ? [] : missionGroups.map(x => <MissionGroups key={x.group} missionGroup={x} />);
-  const groupMissionListTag = (missionGroups === null || missions === null) ? [] : missionGroups.map((x) => {
-    const element = missions.filter(v => x.group === v.group.path);
-    return <GroupMissionList key={x.group} missionGroup={x} missions={element} />
-  })
+  const [authInfo] = useContext(AuthInfoContext);
+  const clearMissions = missions.filter(e => clearMissionFilter(e, answereds, authInfo)).filter(mission => mission.missionType !== 0 && mission.status === 2);
+  const nowMissions = missions.filter(e => !clearMissionFilter(e, answereds, authInfo)).filter(mission => mission.missionType !== 0 && mission.status === 2);
+  const tutorialMission = missions.filter(mission => mission.missionType === 0);
+
+  if (game.status === 0) {
+    return <div>ゲーム開始前です。</div>;
+  }
+
   if (!isLoggedIn) {
     return <div>ログインされておりません。申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください。</div>
   } else {
     return (
       <>
         <div className="mainContainer">
-          <div className="groupContainer">
-            <h3 className="SubTitleLabel">現在の達成度</h3>
-            <div className="missionGroupsContainer">
-              {missionGroupsTag}
+          {
+            game.status !== 1 &&
+            <div className="groupContainer">
+              <h3 className="SubTitleLabel">現在の達成度</h3>
+              <div className="missionGroupsContainer">
+                <MissionGroups game={game} missions={missions} answereds={answereds} />
+              </div>
             </div>
-          </div>
+          }
           <div className="missionContainer">
             <h3 className="SubTitleLabel">ミッション一覧</h3>
-            {groupMissionListTag}
-          </div>
+            {
+              game.status === 1 &&
+              <div>
+                <GroupMissionList missions={tutorialMission} isClear={false} />
+              </div>
+            }
+            {
+              game.status !== 1 &&
+              <div>
+                <GroupMissionList missions={nowMissions} isClear={false} />
+              </div>
+            }
+            {
+              game.status !== 1 &&
+              <div>
+                <h4>【完了済】</h4>
+                <GroupMissionList missions={clearMissions} isClear={true} />
+              </div>
+            }
+            </div>
       </div>
     </>
     )

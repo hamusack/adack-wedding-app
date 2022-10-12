@@ -6,9 +6,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { doc ,  onSnapshot, updateDoc } from 'firebase/firestore'
 import { AuthInfoContext } from 'common/components/AuthContextProvider';
 
-const Login = () => {
+const Login = ({ game }) => {
   const navigate = useNavigate()
   const [name, setName] = useState("");
+  const [table, setTable] = useState("");
   const [userId, setUserId] = useState(useParams()['*']);
   // eslint-disable-next-line no-unused-vars
   const [authInfo, setAuthInfo] = useContext(AuthInfoContext);
@@ -21,7 +22,7 @@ const Login = () => {
   const send = () => {
     if (name !== "") {
       updateUserName();
-      setAuthInfo({ userId: userId });
+      setAuthInfo({ userId: userId,table: table });
       navigate('/');
     }
   }
@@ -36,11 +37,17 @@ const Login = () => {
         setUserId("");
       } else {
         setName(documentSnapshot.data().name)
+        setTable(documentSnapshot.data().table)
       }
     });
     return unsub;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  if (game.status === 0) {
+    return <div>ゲーム開始前です。</div>;
+  }
 
   if (userId === "") {
     return <div>申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください</div>
