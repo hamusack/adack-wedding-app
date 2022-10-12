@@ -1,0 +1,31 @@
+.btnSelected {
+  background-color: pink;
+}
+
+.btnCorrect {
+  background-color: yellow;
+}
+
+.tutorialInput {
+  width:90%;
+  margin:auto;
+  display:flex;
+  justify-content: center;
+}
+
+.tutorialInput button {
+  width:130px;
+  height:130px;
+  margin:10px;
+  font-size:6em;
+}
+
+.sendContainer {
+  width:90%;
+  margin:auto;
+  text-align: center;
+}
+
+.attention {
+  text-align: center;
+}

@@ -1,0 +1,15 @@
+.choiceInput {
+  width:90%;
+  margin:auto;
+  display:flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.choiceInput button {
+  width:120px;
+  height:120px;
+  margin:10px 10px 10px 10px;
+  font-size:6em;
+  text-align: center;
+}

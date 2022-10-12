@@ -1,11 +1,26 @@
 .missionImage {
-  display:flex;
-  justify-content: center;
-  margin-bottom: 50px;
+  margin:0%;
+  padding:0%;
+}
+.missionImage img {
+  width:100%;
 }
 
-.missionImage img {
-  width:90%;
+.KujiImage {
+  margin-top:100px;
+}
+
+.KujiImage img {
+  width:100%;
+}
+
+.missionTextContainer{
+  width:100%;
+  height:100%;
+  border:solid 0.5px #fff;
+}
+.missionText {
+  padding:20px;
 }
 
 .missionTitle {
@@ -15,4 +30,36 @@
 .missionInput {
   display:flex;
   justify-content: center;
+}
+
+.visibleFalse {
+  visibility: hidden;
+}
+
+.pushButton {
+  width:200px;
+  height:200px;
+}
+
+.missionVisualContainer {
+  width:90%;
+  margin:auto;
+  margin-bottom:20px;
+}
+
+.missionTextContainer {
+  height:280px;
+}
+
+.sendButton {
+  width:200px;
+  height:50px;
+  font-size:1.5em;
+}
+
+.backButton {
+  width:80px;
+  height:40px;
+  margin-left:10px;
+  margin-top:10px;
 }

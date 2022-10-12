@@ -1,0 +1,10 @@
+.freeWordsInput {
+  text-align: center;
+}
+
+.freeWordsTextArea {
+  width:80%;
+  height:200px;
+  margin-bottom:20px;
+  font-size:1.2em;
+}

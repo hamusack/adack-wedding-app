@@ -1,0 +1,13 @@
+[
+  {"title":"title","missionType":"missionType","isImage":"isImage","value":"value","answer":"answer","point":"point","answerType":"answerType","status":"status"},
+  {"title":"チュートリアル 問題画像 個人回答","missionType":0,"isImage":true,"value":"tutorial.png","answer":"ちゅーとりある,チュートリアル","point":10,"answerType":4,"status":2},
+  {"title":"チュートリアル 問題文章 個人回答","missionType":0,"isImage":false,"value":"チュートリアルの文章がここに表示されます。\n改行コード入れるとちゃんと改行されるのかな…。\n実験的な","answer":"ちゅーとりある,チュートリアル","point":15,"answerType":4,"status":2},
+  {"title":"謎解き 問題画像 個人回答","missionType":1,"isImage":true,"value":"riddle.png","answer":"なぞとき,謎解き","point":20,"answerType":4,"status":2},
+  {"title":"謎解き 問題文章 全体で1回のみ","missionType":1,"isImage":false,"value":"披露宴会場にある箱を開けてね。","answer":"ハッピー,Happy","point":25,"answerType":1,"status":2},
+  {"title":"自由回答 問題文章 テーブル回答","missionType":2,"isImage":false,"value":"新婦の好きなところを入力してね！","answer":"","point":10,"answerType":3,"status":2},
+  {"title":"四択問題 問題画像 個人回答","missionType":3,"isImage":true,"value":"yontaku.png","answer":"A","point":10,"answerType":4,"status":2},
+  {"title":"おみくじ 個人回答","missionType":4,"isImage":true,"value":"omikuji_stop.png","answer":"","point":5,"answerType":4,"status":2},
+  {"title":"同時ボタン(6以上) 全体","missionType":5,"isImage":false,"value":"数字を6以上にしてください。","answer":"","point":100,"answerType":2,"status":2},
+  {"title":"スタッフ確認 問題画像 テーブル確認","missionType":6,"isImage":true,"value":"staff.png","answer":"","point":15,"answerType":3,"status":2},
+  {"title":"スタッフ確認 問題文章 全体確認","missionType":6,"isImage":false,"value":"お祝いメッセージ色紙を作成して","answer":"","point":100,"answerType":2,"status":2}
+  ]

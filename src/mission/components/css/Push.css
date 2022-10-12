@@ -1,0 +1,11 @@
+.PushMainViewContainer {
+  width:90%;
+  margin:auto;
+  display:flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.PushMainViewContainer span {
+  font-size:7em;
+}

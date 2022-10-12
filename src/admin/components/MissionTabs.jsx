@@ -2,18 +2,19 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import Const from "constants/common"
-import "admin/components/MissionTabs.css"
-import { DataGrid } from '@mui/x-data-grid';
-import { db } from 'common/Firebase'
-import { doc , updateDoc} from 'firebase/firestore'
-
+import Const from "constants/common";
+import "admin/components/MissionTabs.css";
+import { DataGrid , jaJP, GridToolbar} from "@mui/x-data-grid";
+import { db } from "common/Firebase";
+import { doc, updateDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import MissionEditDialog from "admin/components/MissionEditDialog"
+import AnsweredEditDialog from "admin/components/AnsweredEditDialog"
+import Dialog from '@mui/material/Dialog';
+import QRCode from "qrcode.react"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div role="tabpanel" hidden={value !== index} id={`group-tabpanel-${index}`} aria-labelledby={`group-tab-${index}`} {...other}>
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -34,96 +35,216 @@ function a11yProps(index) {
   };
 }
 
-function sumPoint(missions) {
-  const ret = missions.filter((v) => v.status === 3).reduce((p, v) => { return { point: p.point + Number(v.point) } }, { point: 0 })
-  return ret.point;
-}
+const MissionTabs = ({ game, missions, answereds, users }) => {
+  const [missionEditDialogInfo, setMissionEditDialogInfo] = useState({ open: false });
+  const [answeredEditDialogInfo, setAnsweredEditDialogInfo] = useState({ open: false });
+  const [selectedMissionRow, setSelectedMissionRow] = useState(null);
+  const [selectedAnsweredRow, setSelectedAnsweredRow] = useState(null);
+  const [missionEditMode, setMissionEditMode] = useState("new");
+  const [answeredEditMode, setAnsweredEditMode] = useState("new");
+  const [dialogInfo, setDialogInfo] = useState({ open: false});
+  const [qrCodeURL, setqrCodeURL] = useState("https://google.com/");
 
-const MissionTabs = ({ missionGroups, missions }) => {
-  const [selectionModel, setSelectionModel] = useState([]);
-  const groupsTab = (missionGroups) => {
+  const openEditMissionDialog = (mode) => {
+    setMissionEditMode(mode);
+    setMissionEditDialogInfo({ open: true });
+  }
+  const openEditAnsweredDialog = (mode) => {
+    setAnsweredEditMode(mode);
+    setAnsweredEditDialogInfo({ open: true });
+  }
+
+  const missionClearEntry = () => {
+    setSelectedAnsweredRow({mission:selectedMissionRow.id, point:selectedMissionRow.point});
+    openEditAnsweredDialog("new");
+  }
+
+  const editMissionRow = () => {
+    if (missions === null) {
+      return [{ id: "" }];
+    }
+    const edited = [];
+    missions.map((v) => {
+      const obj = {
+        ...v,
+        status: Const.MISSION_STATUS[v.status],
+        missionType: Const.MISSION_TYPE[v.missionType],
+        answerType: Const.ANSWER_TYPE[v.answerType],
+        isImage: v.isImage ? "画像" : "テキスト",
+      };
+      edited.push(obj);
+      return null;
+    });
+    return edited;
+  };
+
+
+  const createTabPanel = (index,rows, columns, buttons, selectionModelChange,onRowDoubleClick) => {
+    return (
+      <TabPanel key={index} value={value} index={index}>
+        <div className="missionListContainer">
+          <div className="tabPanelButtonArea">
+            {buttons}
+          </div>
+          <div style={{ height: 500 ,width: 1200 }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
+              disableMultipleSelection={true}
+              onSelectionModelChange={(id) => selectionModelChange(id[0])}
+              onRowDoubleClick={onRowDoubleClick}
+              localeText={jaJP.components.MuiDataGrid.defaultProps.localeText}
+              components={{
+                Toolbar: GridToolbar,
+              }}
+              density='compact'
+            />
+          </div>
+        </div>
+      </TabPanel>
+    )
+  }
+
+
+  const missionListTab = () => {
+    const columns = [
+      { field: "id", headerName: "ID", width: 70 },
+      { field: "status", headerName: "ｽﾃｰﾀｽ", width: 80 },
+      { field: "title", headerName: "タイトル", width: 300 },
+      { field: "isImage", headerName: "問題表示", width: 100 },
+      { field: "value", headerName: "問題", width: 200 },
+      { field: "point", headerName: "Pt", width: 40 },
+      { field: "missionType", headerName: "種別", width: 100 },
+      { field: "answer", headerName: "答え", width: 150 },
+      { field: "answerType", headerName: "回答タイプ", width: 100 },
+    ];
+
+    const buttons = (
+      <>
+        <button key={1}  className="gameControlButton" onClick={() => openEditMissionDialog("new")}>ミッション追加</button>
+        <button key={2}  className="gameControlButton" onClick={missionClearEntry}>ミッションクリア登録</button>
+        <span style={{ fontSize: "0.7em", marginLeft:"20px"}}>※ミッション編集は行ダブルクリック</span>
+        </>
+  )
+    const selectionModelChange = (id) => {
+      setSelectedMissionRow(missions.filter((v) => v.id === id)[0]);
+    }
+
+    return createTabPanel(0, editMissionRow(), columns,buttons, selectionModelChange, ()=>openEditMissionDialog("update"));
+  };
+
+  const editAnsweredRow = () => {
+    if (answereds === null) {
+      return [{ id: "" }];
+    }
+    const edited = [];
+    answereds.map((v) => {
+      if (v.mission === undefined) {
+        return null;
+      }
+      const mission = missions.find((m) => v.mission === m.id);
+      const obj = { ...v, result: v.point > 0 ? "成功" : "失敗", mission: mission.title };
+      if (obj.user !== "" && users.length > 0) {
+        const user = users.find((u) => v.user === u.id);
+        obj["user"] = user.name;
+      }
+      edited.push(obj);
+      return null;
+    });
+    return edited;
+  };
+
+  const answeredListTab = () => {
+    const columns = [
+      { field: "id", headerName: "ID", width: 70 },
+      { field: "result", headerName: "結果", width: 100 },
+      { field: "mission", headerName: "ミッション", width: 250 },
+      { field: "point", headerName: "Pt", width: 150 },
+      { field: "table", headerName: "テーブル", width: 100 },
+      { field: "user", headerName: "ユーザ", width: 150 },
+      { field: "text", headerName: "テキスト", width: 250 },
+    ];
+
+    const selectionModelChange = (id) => {
+      setSelectedAnsweredRow(answereds.filter((v) => v.id === id)[0]);
+    }
+
+
+    return createTabPanel(1, editAnsweredRow(answereds), columns,
+      [<span key={0} style={{ fontSize: "0.7em", marginLeft:"20px"}}>※クリアレコード編集は行ダブルクリック</span>],
+      selectionModelChange,
+      ()=>openEditAnsweredDialog("update")
+    );
+  };
+
+  const editUserRow = () => {
+    if (users === null || missions === null || answereds === null) {
+      return [{ id: "" }];
+    }
+    const edited = [];
+    users.map((v) => {
+      const point = answereds.filter(
+        (ans) => ans.table === v.table || ans.user === v.id
+      ).reduce((p, c) => {
+        return { point: Number(p.point) + Number(c.point) }
+      }, { point: 0 });
+      const obj = {
+        ...v,
+        point: point.point,
+      };
+      edited.push(obj);
+      return null;
+    });
+    return edited;
+  };
+
+  const usersListTab = () => {
+    const columns = [
+      { field: "id", headerName: "ID", width: 50 },
+      { field: "name", headerName: "名前", width: 100 },
+      { field: "table", headerName: "テーブル", width:100 },
+      { field: "point", headerName: "個人成績", width:120 },
+      {
+        field: "login", headerName: "ログインURL", width: 200,
+        renderCell: (params) =>
+          <a href={`/login/${params.row.id}`} target="_blank" rel="noreferrer">{params.row.id}</a>
+      },
+      {
+        field: "qr", headerName: "QR", width: 100,
+        renderCell: (params) =>
+          <button onClick={(e) => {
+            setDialogInfo({ open: true });
+            setqrCodeURL(window.location.hostname + '/login/' + params.row.id);
+          }
+          }>QR表示</button>
+      }
+    ];
+
+    const buttons = (
+      <>
+        <span style={{ fontSize: "0.7em", marginLeft:"20px"}}>※ユーザ一覧は現状閲覧のみ / 個人成績はテーブル＋個人ミッションの総ポイント</span>
+        </>
+  )
+    const selectionModelChange = (id) => {
+    }
+
+    return createTabPanel(2, editUserRow(), columns,buttons, selectionModelChange);
+  };
+
+  const missionGroups = [
+    { id: 1, name: "ミッション一覧" },
+    { id: 2, name: "クリア状況一覧" },
+    { id: 3, name: "ユーザ一覧" },
+  ];
+
+  const groupsTab = () => {
     return missionGroups == null ? "" : missionGroups.map((group, index) => <Tab key={group.id} label={group.name} {...a11yProps(index)} />);
   };
-  const tabDetails = (missionGroups, missions) => {
-    if (missionGroups == null) {
-      return "";
-    }
 
-    const editMissionRow = (missions) => {
-      if (missions === null) {
-        return [{id:""}];
-      }
-      const edited = [];
-      missions.map((v) => {
-        const obj = { ...v, status:Const.MISSION_STATUS[v.status],};
-        edited.push(obj);
-        return null;
-      })
-      return edited;
-    }
-
-    const selectedRowStatusChange = async (status) => {
-      const updateRef = doc(db, 'missions', selectionModel[0])
-      await updateDoc(updateRef, { status: status });
-    }
-
-    const selectedRowClose = async () => {
-      selectedRowStatusChange(1);
-    }
-
-    const selectedRowOpen = async () => {
-      selectedRowStatusChange(2);
-    }
-
-    const selectedRowClear = async () => {
-      selectedRowStatusChange(3);
-    }
-
-    const groupMissionMap = [];
-    missionGroups.forEach((group, group_index) => {
-      const groupmission = missions.filter((mission) => mission.group.path.indexOf(group.id) > 0);
-      groupMissionMap.push({ group: group, missions: groupmission });
-    });
-    return groupMissionMap.map((element, index) => {
-      const columns = [
-        { field: 'id', headerName: 'ID', width: 100 },
-        { field: 'status', headerName: 'ｽﾃｰﾀｽ', width: 100 },
-        { field: 'title', headerName: 'タイトル', width: 250 },
-        { field: 'point', headerName: 'Pt', width: 40 },
-        { field: 'missionKind', headerName: '種別', width: 50 },
-        { field: 'answer', headerName: 'answer', width: 150 },
-        { field: 'answerType', headerName: '回答種別', width: 100 },
-      ];
-      return (
-        <TabPanel key={index} value={value} index={index}>
-          <div className="groupInfoContainer">
-            <h3>グループ情報</h3>
-            <span className="groupCol">Id：{element.group.id}</span>
-            <span className="groupCol">名称：{element.group.name}</span>
-            <span className="groupCol">現在のポイント：{sumPoint(element.missions)}</span>
-            <span className="groupCol">目標ポイント：{element.group.pointArr.join(",")}</span>
-            <span className="groupCol">ポイント表示：{Const.GROUP_STATUS[element.group.status]}</span>
-            <Button className="groupCol">{element.group.status === 1 ? "ポイントを隠す" : "ポイントを表示する"}</Button>
-            <Button className="groupCol">更新する</Button>
-          </div>
-          <div className="missionListContainer">
-            <div className="missionListHeader">
-              <h3>ミッション一覧</h3>
-            </div>
-            <div>
-                <Button>ミッション追加</Button>
-                <Button>ミッション編集</Button>
-                <Button onClick={selectedRowClear}>クリアにする</Button>
-                <Button onClick={selectedRowClose}>非公開にする</Button>
-                <Button onClick={selectedRowOpen}>公開にする</Button>
-              </div>
-            <div style={{height:400}}>
-              <DataGrid rows={editMissionRow(element.missions)} columns={columns} pageSize={10} rowsPerPageOptions={[10]} disableMultipleSelection={true}   onSelectionModelChange={(id) => setSelectionModel(id)}/>
-              </div>
-          </div>
-        </TabPanel>
-      );
-    });
+  const tabDetails = () => {
+    return [missionListTab(), answeredListTab(),usersListTab()];
   };
 
   const [value, setValue] = useState(0);
@@ -132,14 +253,80 @@ const MissionTabs = ({ missionGroups, missions }) => {
     setValue(newValue);
   };
 
+
+  const handleDialogClose = (setDialogInfo) => {
+    setDialogInfo(prev => {
+      return {...prev, open: false}
+    });
+  }
+
+  const saveMission = async (isUpdate, mission) => {
+    if (isUpdate) {
+      const missionRef = doc(db, 'missions', mission.id);
+      const { id, ...updateMission } = mission;
+      await updateDoc(missionRef, updateMission);
+    } else {
+      await addDoc(collection(db, "missions"), { ...mission,createTime: serverTimestamp() });
+    }
+  }
+
+  const saveAnswered = async (isUpdate, answered) => {
+    if (isUpdate) {
+      const answeredRef = doc(db, 'answered', answered.id);
+      const { id, ...updateAnswered } = answered;
+      await updateDoc(answeredRef, updateAnswered);
+    } else {
+      await addDoc(collection(db, "answered"), { ...answered,createAt: serverTimestamp() });
+    }
+  }
+
   return (
     <>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs value={value} onChange={handleChange} aria-label="group tabs">
-          {groupsTab(missionGroups)}
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="group tabs"
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: '#dddddd',
+              height: '5px'
+            }
+          }}
+        >
+          {groupsTab()}
         </Tabs>
       </Box>
-      {tabDetails(missionGroups, missions)}
+      {tabDetails(missions)}
+      <MissionEditDialog
+            onClose={() => handleDialogClose(setMissionEditDialogInfo)}
+            onSave={saveMission}
+            open={missionEditDialogInfo['open']}
+            mission={selectedMissionRow}
+            mode={missionEditMode}
+      />
+      <AnsweredEditDialog
+            onClose={() => handleDialogClose(setAnsweredEditDialogInfo)}
+            onSave={saveAnswered}
+            open={answeredEditDialogInfo['open']}
+            answered={selectedAnsweredRow}
+            mode={answeredEditMode}
+      />
+      <Dialog
+        onClose={() => setDialogInfo({open:false})}
+        open={dialogInfo['open']}
+        PaperProps={{
+          style: {
+            backgroundColor:"#030244",
+            textAlign: "center",
+            border: "solid 7px #fff"
+          },
+        }}
+        >
+        <div className="qrDialogContainer">
+          <QRCode value={qrCodeURL} />
+        </div>
+      </Dialog>
     </>
   );
 };
