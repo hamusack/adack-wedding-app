@@ -109,19 +109,12 @@ function App() {
       });
     });
     return unsubscribe;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
   useEffect(() => {
     const missionsRef = collection(db, 'missions');
     const q = query (missionsRef, orderBy("createTime"));
-
-    // const unsub = onSnapshot(q, (collectionSnapShot) => {
-    //   const missionList = [];
-    //   collectionSnapShot.forEach((doc) => {
-    //     missionList.push({ ...doc.data() ,id: doc.id});
-    //   }
-    //   );
-    //   setMissions(missionList);
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
         snapshot.docChanges().forEach((change) => {
@@ -149,6 +142,7 @@ function App() {
       });
       return unsubscribe;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
   return (

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { db } from 'common/Firebase'
-import { doc, addDoc, deleteDoc, getDocs, collection, onSnapshot, serverTimestamp, query ,where, Timestamp} from 'firebase/firestore'
+import { doc, addDoc, deleteDoc, collection, onSnapshot, serverTimestamp, query ,where, Timestamp} from 'firebase/firestore'
 import { AuthInfoContext } from 'common/components/AuthContextProvider';
 import ClickButton from 'common/components/ClickButton'
 import 'mission/components/css/Push.css';
