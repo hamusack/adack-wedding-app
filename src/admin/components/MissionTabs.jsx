@@ -216,7 +216,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
         renderCell: (params) =>
           <button onClick={(e) => {
             setDialogInfo({ open: true });
-            setqrCodeURL(window.location.hostname + '/login/' + params.row.id);
+            setqrCodeURL('https://' + window.location.hostname + '/login/' + params.row.id);
           }
           }>QR表示</button>
       }
