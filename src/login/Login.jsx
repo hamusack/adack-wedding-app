@@ -5,6 +5,30 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc ,  onSnapshot, updateDoc } from 'firebase/firestore'
 import { AuthInfoContext } from 'common/components/AuthContextProvider';
+import { styled } from '@mui/material/styles';
+
+
+const LoginTextField = styled(TextField)(({ theme }) => ({
+  width: 200,
+  marginLeft:20,
+}));
+
+const LoginButton = styled(Button)(({ theme }) => ({
+  width: 180,
+  marginTop: 20,
+  marginLeft:20,
+  backgroundColor: "#030244",
+  border:"solid 1px #FFDF04",
+  color:"#FFF"
+}));
+
+const LoginContainerDiv = styled("div")(({ theme }) => ({
+  width:"80%",
+  display:"flex",
+  flexFlow: "column",
+  alignItems: "center",
+  justifyContent: "center",
+}));
 
 const Login = ({ game }) => {
   const navigate = useNavigate()
@@ -55,12 +79,14 @@ const Login = ({ game }) => {
     return (
       <>
         <h2>お名前登録画面</h2>
-        <TextField
+        <LoginContainerDiv>
+          <LoginTextField
               value={name}
               onChange={(e) => setName(e.target.value)}
               label="お名前"
             />
-        <Button onClick={send}>ログイン</Button>
+          <LoginButton onClick={send}>ログイン</LoginButton>
+        </LoginContainerDiv>
       </>
     )
   }

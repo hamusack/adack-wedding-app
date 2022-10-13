@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import 'mission/components/css/Tutorial.css';
 import { useNavigate } from 'react-router-dom'
 import MissionSendButton from 'mission/components/parts/MissionSendButton';
-const Tutorial = ({ game,clearMission }) => {
+import ChoiceButton, {selectedButton, normalButton} from 'mission/components/parts/ChoiceButton';
+
+const Tutorial = ({ game, clearMission }) => {
   const [ choiceBtn, setChoiceBtn ] = useState();
   const [ isSend, setIsSend ] = useState(false);
   const navigation = useNavigate();
@@ -21,13 +23,14 @@ const Tutorial = ({ game,clearMission }) => {
     setChoiceBtn(e.target.value);
   }
 
-  const changeBtnColorClass = (btn) => {
+  const getButtonStyle = (btn) => {
     if (btn === choiceBtn) {
-      return "btnSelected";
-    } else {
-      return "btnNormal";
+      return selectedButton;
     }
-  }
+
+    return normalButton;
+  };
+
 
   const sendAnswer = (e) => {
     if (choiceBtn == null) {
@@ -41,8 +44,8 @@ const Tutorial = ({ game,clearMission }) => {
     <>
       {!isSend &&
       <div className="tutorialInput">
-        <button className={changeBtnColorClass("A")} onClick={choiceBtnPushOn} value="A">⭕️</button>
-        <button className={changeBtnColorClass("B")} onClick={choiceBtnPushOn} value="B">✕</button>
+        <ChoiceButton style={getButtonStyle("A")} onClick={choiceBtnPushOn} value="A">⭕️</ChoiceButton>
+        <ChoiceButton style={getButtonStyle("B")} onClick={choiceBtnPushOn} value="B">✕</ChoiceButton>
       </div>
       }
       {!isSend &&

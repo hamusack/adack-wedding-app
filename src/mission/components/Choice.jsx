@@ -3,32 +3,7 @@ import "mission/components/css/Choice.css";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MissionSendButton from "mission/components/parts/MissionSendButton";
-
-const MyButton = styled(Button)({
-  width: 140,
-  height: 140,
-  fontSize: "5em",
-  backgroundColor: "var(--backgroundColor)",
-  color: "#444444",
-  "&:hover": {
-    background: "var(--backgroundColor)",
-  },
-  "&:active": {
-    background: "var(--backgroundColor)",
-  }
-});
-
-const normalButton = {
-  "--backgroundColor": "white",
-};
-
-const selectedButton = {
-  "--backgroundColor": "pink",
-};
-
-const correctButton = {
-  "--backgroundColor": "yellow",
-};
+import ChoiceButton, {selectedButton, correctButton, normalButton} from "mission/components/parts/ChoiceButton"
 
 const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered }) => {
   const [choiceBtn, setChoiceBtn] = useState("");
@@ -77,18 +52,18 @@ const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered 
   return (
     <>
       <div className="choiceInput">
-        <MyButton style={getButtonStyle("A")} onClick={answered === null ? choiceBtnPushOn : null} value="A">
+        <ChoiceButton style={getButtonStyle("A")} onClick={answered === null ? choiceBtnPushOn : null} value="A">
           A
-        </MyButton>
-        <MyButton style={getButtonStyle("B")} onClick={answered === null ? choiceBtnPushOn : null} value="B">
+        </ChoiceButton>
+        <ChoiceButton style={getButtonStyle("B")} onClick={answered === null ? choiceBtnPushOn : null} value="B">
           B
-        </MyButton>
-        <MyButton style={getButtonStyle("C")} onClick={answered === null ? choiceBtnPushOn : null} value="C">
+        </ChoiceButton>
+        <ChoiceButton style={getButtonStyle("C")} onClick={answered === null ? choiceBtnPushOn : null} value="C">
           C
-        </MyButton>
-        <MyButton style={getButtonStyle("D")} onClick={answered === null ? choiceBtnPushOn : null} value="D">
+        </ChoiceButton>
+        <ChoiceButton style={getButtonStyle("D")} onClick={answered === null ? choiceBtnPushOn : null} value="D">
           D
-        </MyButton>
+        </ChoiceButton>
       </div>
       <div className="sendContainer">
         <p className="attention">回答は一回限り！</p>

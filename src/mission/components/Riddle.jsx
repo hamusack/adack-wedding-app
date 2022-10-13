@@ -19,7 +19,6 @@ const Riddle = ({ mission, clearMission, setDialogInfo, answered }) => {
   const answerCheck = () => {
     if ( mission.answer.split(",").indexOf(answer) !== -1 ) {
       clearMission(answer);
-      setAnswer("正解！");
       setDialogInfo({ open: true, title: "正解！", value: `「${mission.title}」をクリア！\nポイントを${mission.point}ptゲット！` });
     } else {
       setAnswer(WRONG_TEXT);

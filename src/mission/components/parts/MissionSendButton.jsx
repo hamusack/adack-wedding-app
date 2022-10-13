@@ -23,7 +23,6 @@ const MissionSendButton = ({ answered, onClick, onBlur = null, disabled, childre
   }
 
   const getButtonStyle = () => {
-    console.log(answered)
     if (answered !== null) {
       return visibleFalse
     } else
