@@ -317,7 +317,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
         open={dialogInfo['open']}
         PaperProps={{
           style: {
-            backgroundColor:"#030244",
+            backgroundColor:"#fff",
             textAlign: "center",
             border: "solid 7px #fff"
           },
