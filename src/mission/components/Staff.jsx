@@ -1,4 +1,3 @@
-import { textAlign } from '@mui/system';
 import 'mission/components/css/Staff.css';
 import { styled } from '@mui/material/styles';
 const Staff = ({ mission }) => {
