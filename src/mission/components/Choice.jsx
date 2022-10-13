@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import "mission/components/css/Choice.css";
-import { Button } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import MissionSendButton from "mission/components/parts/MissionSendButton";
 import ChoiceButton, {selectedButton, correctButton, normalButton} from "mission/components/parts/ChoiceButton"
 
