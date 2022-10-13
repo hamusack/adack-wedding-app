@@ -24,7 +24,7 @@
 }
 
 .missionTitle {
-  margin-left:5px;
+  margin-left:10px;
 }
 
 .missionInput {
@@ -39,22 +39,17 @@
 .pushButton {
   width:200px;
   height:200px;
+  font-size:3em;
 }
 
 .missionVisualContainer {
-  width:90%;
+  width:89%;
   margin:auto;
   margin-bottom:20px;
 }
 
 .missionTextContainer {
   height:280px;
-}
-
-.sendButton {
-  width:200px;
-  height:50px;
-  font-size:1.5em;
 }
 
 .backButton {

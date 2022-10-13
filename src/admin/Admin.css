@@ -53,6 +53,9 @@
   width: 110%;
 }
 
+.warningButtonContainer {
+  margin-bottom:30px;
+}
 
 .warningButton:after {
     background: red;

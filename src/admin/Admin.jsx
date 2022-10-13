@@ -95,9 +95,11 @@ const Admin = ({ game, missions, answereds }) => {
           <h3 className="subTitleLabel">各種一覧</h3>
           <MissionTabs game={game} missions={missions} answereds={answereds} users={users} />
         </div>
-        <h3 className="subTitleLabel">取り扱い注意</h3>
-        <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('missions')}>ミッション全削除</button>
-        <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('answered')}>クリア状況全削除</button>
+        <div className="warningButtonContainer">
+          <h3 className="subTitleLabel">取り扱い注意</h3>
+          <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('missions')}>ミッション全削除</button>
+          <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('answered')}>クリア状況全削除</button>
+        </div>
       </div>
 
     </>

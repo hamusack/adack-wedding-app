@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'mission/components/css/Tutorial.css';
 import { useNavigate } from 'react-router-dom'
-
+import MissionSendButton from 'mission/components/parts/MissionSendButton';
 const Tutorial = ({ game,clearMission }) => {
   const [ choiceBtn, setChoiceBtn ] = useState();
   const [ isSend, setIsSend ] = useState(false);
@@ -48,7 +48,10 @@ const Tutorial = ({ game,clearMission }) => {
       {!isSend &&
         <div className="sendContainer">
           <p className="attention">回答は一回限り！</p>
-          <button className="sendButton" disabled={choiceBtn == null} onClick={sendAnswer}>送信</button>
+          <MissionSendButton answered={null}  disabled={choiceBtn == null} onClick={sendAnswer}>
+            送信
+          </MissionSendButton>
+
         </div>
       }
       {isSend &&

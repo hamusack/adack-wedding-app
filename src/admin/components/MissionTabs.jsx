@@ -207,9 +207,9 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
       { field: "table", headerName: "テーブル", width:100 },
       { field: "point", headerName: "個人成績", width:120 },
       {
-        field: "login", headerName: "ログインURL", width: 200,
+        field: "login", headerName: "ログインURL", width: 400,
         renderCell: (params) =>
-          <a href={`/login/${params.row.id}`} target="_blank" rel="noreferrer">{params.row.id}</a>
+          <a href={`/login/${params.row.id}`} target="_blank" rel="noreferrer">{'https://' + window.location.hostname + '/login/' + params.row.id}</a>
       },
       {
         field: "qr", headerName: "QR", width: 100,

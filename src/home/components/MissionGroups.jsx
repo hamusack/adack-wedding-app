@@ -15,8 +15,6 @@ export const MissionGroups = ({ game, missions, answereds }) => {
     }
   }
   const nextPoint = () => {
-    console.log('nextPoint')
-    console.log(game.status)
     const nextP = game.pointArr.find((value) => value > nowPoint())
     if (game.status >= 3) {
       return '????'

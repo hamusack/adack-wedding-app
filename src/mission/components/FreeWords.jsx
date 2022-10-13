@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import MissionSendButton from "mission/components/parts/MissionSendButton";
 import("mission/components/css/FreeWords.css");
+
 
 const FreeWords = ({ mission, clearMission, setDialogInfo, answered }) => {
   const WRONG_TEXT = "もう少し書いて…";
@@ -32,9 +34,9 @@ const FreeWords = ({ mission, clearMission, setDialogInfo, answered }) => {
     <>
       <div className="freeWordsInput">
         <textarea className="freeWordsTextArea" value={answer} onChange={(e) => setAnswer(e.target.value)} disabled={answered !== null} />
-        <button className={answered !== null ? "sendButton visibleFalse" : "sendButton"} onClick={answerCheck} onBlur={answerClear}>
+        <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} >
           送信
-        </button>
+        </MissionSendButton>
       </div>
     </>
   );

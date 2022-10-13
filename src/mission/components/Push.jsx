@@ -4,8 +4,9 @@ import { doc, addDoc, deleteDoc, collection, onSnapshot, serverTimestamp, query 
 import { AuthInfoContext } from 'common/components/AuthContextProvider';
 import ClickButton from 'common/components/ClickButton'
 import 'mission/components/css/Push.css';
+import { styled } from '@mui/material/styles';
 
-const Push = ({ mission, clearMission, setDialogInfo, answered }) => {
+const Push = ({ mission, clearMission, setDialogInfo, answered, setBackButtonDisable }) => {
   const CLEAR_COUNT = 6;
   const [buttonList, setButtonList] = useState([]);
   const [buttonSize, setButtonSize] = useState(0);
@@ -60,6 +61,7 @@ const Push = ({ mission, clearMission, setDialogInfo, answered }) => {
 
     const timer = setTimeout(() => {
       setButtonId(null);
+      setBackButtonDisable(false);
     }, 1 * 1000);
 
     //クリーンアップ
@@ -101,7 +103,24 @@ const Push = ({ mission, clearMission, setDialogInfo, answered }) => {
   const onPush = async () => {
     const docRef = await addDoc(collection(db, "button"), { user: authInfo.userId, createdAt: serverTimestamp() });
     setButtonId(docRef.id);
+    setBackButtonDisable(true);
   }
+
+  const PushButton = styled(ClickButton)(({ theme }) => ({
+    width: 200,
+    height:200,
+    marginTop: 20,
+    backgroundColor: "#ddd",
+    border: "solid 6px#bbb",
+    color: "#000",
+    fontSize:"2.5em",
+    display: "var(--display)",
+    '&:hover': { backgroundColor: "#ddd" },
+    '&:disabled': {
+      backgroundColor: "#ccc",
+      color: "#aaa"
+    }
+  }));
 
   return (
     <>
@@ -110,9 +129,9 @@ const Push = ({ mission, clearMission, setDialogInfo, answered }) => {
       </div>
       <div className="sendContainer">
         <p className={answered === null ? "visibleFalse attention" : "attention"} >ミッション達成済</p>
-        <ClickButton className="pushButton" disabled={buttonId !== null || answered !== null} onClick={onPush} >
+        <PushButton className="pushButton" disabled={buttonId !== null || answered !== null} onClick={onPush} >
         ボタン
-      </ClickButton>
+      </PushButton>
       </div>
       <p></p>
   </>

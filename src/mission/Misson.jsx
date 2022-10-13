@@ -15,6 +15,8 @@ import Kujibiki from './components/Kujibiki';
 import Push from './components/Push';
 import Tutorial from './components/Tutorial';
 import Staff from './components/Staff';
+import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const Mission = ({ missions, answereds, game }) => {
   const isLoggedIn = useContext(LoggedInContext);
@@ -24,7 +26,8 @@ const Mission = ({ missions, answereds, game }) => {
   const [authInfo] = useContext(AuthInfoContext);
   const mission = missions === null ? { isImage:false, missionType : 0, value: "",title: "", path: "" } : missions.find((x) => x.id === location.state.id);
   const [missionImageTextInfo, setMissionImageTextInfo] = useState({})
-  const [answered, setAnswered] = useState({})
+  const [answered, setAnswered] = useState({});
+  const [backButtonDisable, setBackButtonDisable] = useState(false);
 
   const answeredFilter = (mission) => {
     let ans = null;
@@ -102,7 +105,7 @@ const Mission = ({ missions, answereds, game }) => {
       case 4:
         return <Kujibiki mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered} setMissionImageTextInfo={setMissionImageTextInfo} />;
       case 5:
-        return <Push mission={mission} clearMission={clearMissionWithDocumentId} setDialogInfo={setDialogInfo} answered={answered}  />;
+        return <Push mission={mission} clearMission={clearMissionWithDocumentId} setDialogInfo={setDialogInfo} answered={answered} setBackButtonDisable={setBackButtonDisable} />;
       case 6:
         return <Staff mission={mission} />;
         default:
@@ -117,16 +120,28 @@ const Mission = ({ missions, answereds, game }) => {
     navigation('/');
   }
 
+const BackButton = styled(Button)(
+  ({ theme }) => ({
+    width: 80,
+    marginTop: 10,
+    marginLeft:10,
+    backgroundColor: "#030244",
+    border:"solid 2px #DABE00",
+    color:"#FFF"
+  })
+);
+
 
   if (!isLoggedIn) {
     return <div>ログインされておりません。申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください。</div>
   } else {
     return (
       <>
-        <button
+        <BackButton
           onClick={() => { navigation(-1); }}
+          disabled={backButtonDisable}
           className={ mission.missionType === 0 ? "backButton visibleFalse": "backButton" }
-        >{"<< Back"}</button>
+        >{"戻る"}</BackButton>
         <h3 className="missionTitle">{mission.title}</h3>
           <MissionImageText mission={missionImageTextInfo} />
         {viewMissionDetail()}

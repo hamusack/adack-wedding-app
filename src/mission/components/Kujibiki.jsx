@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import 'mission/components/css/Kujibiki.css'
+import MissionSendButton from 'mission/components/parts/MissionSendButton';
 
 const Kujibiki = ({ mission, clearMission, failedMission, setDialogInfo, answered, setMissionImageTextInfo  }) => {
   const [isTimer, setIsTimer] = useState(false);
@@ -68,7 +69,9 @@ const Kujibiki = ({ mission, clearMission, failedMission, setDialogInfo, answere
   return (
   <>
     <div className="KujiInput">
-        <button className={answered !== null ? "sendButton visibleFalse" : "sendButton"} disabled={ isTimer } onClick={kuji} >くじを引く</button>
+        <MissionSendButton answered={answered} onClick={kuji} disabled={ isTimer }>
+          くじを引く
+        </MissionSendButton>
     </div>
   </>
   )

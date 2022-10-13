@@ -1,11 +1,13 @@
 .missionRow {
-  margin:0px 0px 5px 15px ;
+  margin:0px 0px 5px 5px ;
   display:flex;
   align-items: center;
 }
 
 .missionRowPoint {
   width:12%;
+  text-align: right;
+  margin-right:10px;
 }
 
 .missionRowTitle {

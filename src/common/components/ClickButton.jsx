@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@mui/material';
 /**
  * 複数のクリックを一つにまとめるHOC
  * @param {ReactComponent} WrappedComponent ラップされるコンポーネント
@@ -47,12 +48,12 @@ const ClickButtonHandler = (WrappedComponent) => {
 const ClickButton = ClickButtonHandler(function ClickButton(props) {
 
   return (
-    <button
+    <Button
       className={props.className}
       onClick={e => props.handleClick(e, props.onClick)}
       disabled={props.disabled}  >
       {props.children}
-    </button>
+    </Button>
   );
 });
 
