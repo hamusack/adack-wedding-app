@@ -47,4 +47,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 ## 直すこと
-6人同時に押すと他の人がクリアになる。
+おみくじ画像

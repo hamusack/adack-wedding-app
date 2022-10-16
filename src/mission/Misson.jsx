@@ -59,6 +59,7 @@ const Mission = ({ missions, answereds, game }) => {
 
 
   useEffect(() => {
+    document.title = "ミッション画面";
     if (missions == null || missions.length === 0) {
       navigation('/');
     } else {
@@ -73,7 +74,7 @@ const Mission = ({ missions, answereds, game }) => {
       return
     }
     const ans = answeredFilter(mission);
-    if (!location.state.isClear && ans !== null && Object.keys(answered).length !== 0 && ans.user !== authInfo.userId) {
+    if (!location.state.isClear && ans !== null && Object.keys(answered).length !== 0 && ans.user !== authInfo.userId && mission.missionType !== 5) {
       setDialogInfo({ open:true,title:"", value:`「${mission.title}」は他の人がクリアしました。一覧画面に戻ります。`});
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

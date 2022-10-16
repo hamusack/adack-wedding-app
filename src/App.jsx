@@ -72,17 +72,6 @@ function App() {
   },[])
 
   useEffect(() => {
-    // const answeredRef = collection(db, 'answered');
-    // const unsub = onSnapshot(answeredRef, (collectionSnapShot) => {
-    //   const answeredList = [];
-    //   collectionSnapShot.forEach((doc) => {
-    //     answeredList.push({ ...doc.data() ,id: doc.id});
-    //   }
-    //   );
-
-
-    //   setAnswereds(answeredList);
-
     const answeredRef = collection(db, 'answered');
     const unsubscribe = onSnapshot(answeredRef, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
@@ -111,6 +100,7 @@ function App() {
     return unsubscribe;
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
   useEffect(() => {
     const missionsRef = collection(db, 'missions');

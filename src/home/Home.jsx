@@ -14,6 +14,8 @@ const Home = ({ game, missions, answereds }) => {
 
   if (game.status === 0) {
     return <div>ゲーム開始前です。</div>;
+  } else {
+    document.title = "ホーム画面";
   }
 
   if (!isLoggedIn) {

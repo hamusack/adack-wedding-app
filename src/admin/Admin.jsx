@@ -9,6 +9,7 @@ const Admin = ({ game, missions, answereds }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    document.title = "管理画面";
     const userRef = collection(db, 'users');
 
       const unsubscribe = onSnapshot(userRef, (snapshot) => {

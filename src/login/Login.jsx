@@ -52,6 +52,7 @@ const Login = ({ game }) => {
   }
 
   useEffect(() => {
+    document.title = "ログイン画面";
     if (userId === "") {
       return;
     }
