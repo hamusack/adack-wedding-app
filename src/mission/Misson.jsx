@@ -13,7 +13,7 @@ import MissionImageText from 'mission/components/MissionImageText'
 import FreeWords from './components/FreeWords';
 import Kujibiki from './components/Kujibiki';
 import Push from './components/Push';
-import Tutorial from './components/Tutorial';
+// import Tutorial from './components/Tutorial';
 import Staff from './components/Staff';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
