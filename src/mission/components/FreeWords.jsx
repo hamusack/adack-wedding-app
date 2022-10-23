@@ -34,9 +34,11 @@ const FreeWords = ({ mission, clearMission, setDialogInfo, answered }) => {
     <>
       <div className="freeWordsInput">
         <textarea className="freeWordsTextArea" value={answer} onChange={(e) => setAnswer(e.target.value)} disabled={answered !== null} />
-        <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} >
-          送信
-        </MissionSendButton>
+        <div className="sendContainer">
+          <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} >
+            送信
+          </MissionSendButton>
+        </div>
       </div>
     </>
   );

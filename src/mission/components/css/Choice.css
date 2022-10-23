@@ -6,3 +6,9 @@
   justify-content: center;
   margin: 0 auto;
 }
+
+.sendContainer {
+  width:90%;
+  margin:auto;
+  text-align: center;
+}
