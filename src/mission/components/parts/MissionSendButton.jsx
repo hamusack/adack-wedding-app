@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 const StyledMissionSendButton = styled(Button)(({ theme }) => ({
   width: 200,
   height:50,
-  marginTop: 20,
+  marginTop: 0,
   backgroundColor: "#030244",
   border: "solid 2px #FFDF04",
   color: "#fff",
