@@ -96,7 +96,7 @@ const Mission = ({ missions, answereds, game }) => {
   const viewMissionDetail = () => {
     switch (mission.missionType) {
       case 0:
-        return <Tutorial game={game} clearMission={clearMission} />
+        return <Choice mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 1:
         return <Riddle mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 2:

@@ -6,7 +6,6 @@ import ChoiceButton, {selectedButton, correctButton, normalButton} from "mission
 const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered }) => {
   const [choiceBtn, setChoiceBtn] = useState("");
   const [correctBtn, setCorrectBtn] = useState("");
-
   const choiceBtnPushOn = (e) => {
     setChoiceBtn(e.target.value);
   };
@@ -27,6 +26,10 @@ const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered 
     if (choiceBtn == null) {
       return;
     }
+    if (mission.missionType === 0) {
+      sendAnswerTutorial(e);
+      return;
+    }
 
     if (mission.answer === choiceBtn) {
       clearMission(choiceBtn);
@@ -36,6 +39,14 @@ const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered 
       setDialogInfo({ open: true, title: "残念！", value: `「${mission.title}」\n不正解……` });
     }
   };
+
+  const sendAnswerTutorial = (e) => {
+    if (mission.answer === choiceBtn) {
+      clearMission(choiceBtn);
+    } else {
+      failedMission(choiceBtn);
+    }
+  }
 
   useEffect(() => {
     if (answered !== null && Object.keys(answered).length !== 0) {
@@ -65,10 +76,15 @@ const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered 
       </div>
       <div className="sendContainer">
         <p className="attention">回答は一回限り！</p>
-        <MissionSendButton answered={answered} onClick={sendAnswer} disabled={choiceBtn == null || answered !== null}>
+        <MissionSendButton answered={answered} onClick={sendAnswer} disabled={choiceBtn == null || choiceBtn === "" || answered !== null}>
           送信
         </MissionSendButton>
       </div>
+      {answered !== null && mission.missionType === 0 &&
+        <div>
+        <p className="attention">回答が送信されました。<br />新郎を応援しよう！</p>
+        </div>
+      }
     </>
   );
 };

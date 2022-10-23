@@ -13,7 +13,6 @@ const StyledMissionSendButton = styled(Button)(({ theme }) => ({
 }));
 
 const MissionSendButton = ({ answered, onClick, onBlur = null, disabled, children }) => {
-
   const visibleTrue = {
     "--display": "",
   }
