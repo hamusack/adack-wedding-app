@@ -4,6 +4,7 @@ import { AuthInfoContext, LoggedInContext } from "common/components/AuthContextP
 import { useContext } from 'react';
 import 'home/home.css';
 import { clearMissionFilter } from 'common/CommonFunctions'
+import Header from 'home/components/Header';
 
 const Home = ({ game, missions, answereds }) => {
   const isLoggedIn = useContext(LoggedInContext);
@@ -23,6 +24,8 @@ const Home = ({ game, missions, answereds }) => {
   } else {
     return (
       <>
+        <img id="homeCartain" src={`${process.env.PUBLIC_URL}/images/cartain.png`} alt="謎"></img>
+        <Header answereds={answereds} authInfo={authInfo}></Header>
         <div className="mainContainer">
           {
             game.status !== 1 &&

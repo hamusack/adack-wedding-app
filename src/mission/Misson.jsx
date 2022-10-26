@@ -85,6 +85,7 @@ const Mission = ({ missions, answereds, game }) => {
   }
 
   const clearMissionWithDocumentId = async (text = null) => {
+    await clearMission();
     await setDoc(doc(db, "answered", "push_button_clear"), createAnswerdRecord(mission, "", "", text, true));
   }
 
@@ -141,7 +142,8 @@ const BackButton = styled(Button)(
         <BackButton
           onClick={() => { navigation(-1); }}
           disabled={backButtonDisable}
-          className={ mission.missionType === 0 ? "backButton visibleFalse": "backButton" }
+          // className={ mission.missionType === 0 ? "backButton visibleFalse": "backButton" }
+          className="backButton"
         >{"戻る"}</BackButton>
         <h3 className="missionTitle">{mission.title}</h3>
           <MissionImageText mission={missionImageTextInfo} />

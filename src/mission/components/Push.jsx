@@ -7,7 +7,7 @@ import 'mission/components/css/Push.css';
 import { styled } from '@mui/material/styles';
 
 const Push = ({ mission, clearMission, setDialogInfo, answered, setBackButtonDisable }) => {
-  const CLEAR_COUNT = 2;
+  const CLEAR_COUNT = 6;
   const [buttonList, setButtonList] = useState([]);
   const [buttonSize, setButtonSize] = useState(0);
   const [authInfo] = useContext(AuthInfoContext);

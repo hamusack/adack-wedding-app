@@ -1,0 +1,18 @@
+.HeaderContainer {
+  margin-top:20px;
+  margin-bottom:20px;
+  /* display:flex;
+  justify-content: center; */
+}
+
+.HeaderContainer #name {
+  text-align: center;
+}
+
+.HeaderContainer #table {
+  text-align: center;
+}
+
+.HeaderContainer #point {
+  text-align: center;
+}

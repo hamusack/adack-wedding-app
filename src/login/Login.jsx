@@ -46,7 +46,7 @@ const Login = ({ game }) => {
   const send = () => {
     if (name !== "") {
       updateUserName();
-      setAuthInfo({ userId: userId,table: table });
+      setAuthInfo({ userId: userId,table: table,name: name });
       navigate('/');
     }
   }

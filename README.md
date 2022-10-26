@@ -47,4 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 ## 直すこと
+各ユーザデータ作成→QR生成
+ランキングの確認ページ
 おみくじ画像
+firestoreのセキュリティ

@@ -86,7 +86,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
           <div className="tabPanelButtonArea">
             {buttons}
           </div>
-          <div style={{ height: 500 ,width: 1200 }}>
+          <div style={{ height: 500 ,width: 1400 }}>
             <DataGrid
               rows={rows}
               columns={columns}
@@ -110,7 +110,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
 
   const missionListTab = () => {
     const columns = [
-      { field: "id", headerName: "ID", width: 70 },
+      { field: "id", headerName: "ID", width: 220 },
       { field: "status", headerName: "ｽﾃｰﾀｽ", width: 80 },
       { field: "title", headerName: "タイトル", width: 300 },
       { field: "isImage", headerName: "問題表示", width: 100 },
@@ -158,7 +158,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
 
   const answeredListTab = () => {
     const columns = [
-      { field: "id", headerName: "ID", width: 70 },
+      { field: "id", headerName: "ID", width: 220 },
       { field: "result", headerName: "結果", width: 100 },
       { field: "mission", headerName: "ミッション", width: 250 },
       { field: "point", headerName: "Pt", width: 150 },
@@ -202,7 +202,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
 
   const usersListTab = () => {
     const columns = [
-      { field: "id", headerName: "ID", width: 50 },
+      { field: "id", headerName: "ID", width: 220 },
       { field: "name", headerName: "名前", width: 100 },
       { field: "table", headerName: "テーブル", width:100 },
       { field: "point", headerName: "個人成績", width:120 },

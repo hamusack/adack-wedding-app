@@ -8,7 +8,8 @@ export const createAnswerdRecord = (mission, userId, userTable, text, success) =
     table: mission.answerType === 3 ? userTable : null ,
     point: success ? Number(mission.point) : 0 ,
     text: text,
-    createdAt: serverTimestamp()
+    createdAt: serverTimestamp(),
+    missionType: mission.missionType
   }
 }
 
