@@ -206,6 +206,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
       { field: "name", headerName: "名前", width: 100 },
       { field: "table", headerName: "テーブル", width:100 },
       { field: "point", headerName: "個人成績", width:120 },
+      { field: "memo", headerName: "メモ", width:200 },
       {
         field: "login", headerName: "ログインURL", width: 400,
         renderCell: (params) =>
