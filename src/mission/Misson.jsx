@@ -145,7 +145,7 @@ const BackButton = styled(Button)(
           // className={ mission.missionType === 0 ? "backButton visibleFalse": "backButton" }
           className="backButton"
         >{"戻る"}</BackButton>
-        <h3 className="missionTitle">{mission.title}</h3>
+        <h3 className="SubTitleLabel">{mission.title}</h3>
           <MissionImageText mission={missionImageTextInfo} />
         {viewMissionDetail()}
         <MaskDialog

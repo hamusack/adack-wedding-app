@@ -14,13 +14,13 @@ const Home = ({ game, missions, answereds }) => {
   const tutorialMission = missions.filter(mission => mission.missionType === 0);
 
   if (game.status === 0) {
-    return <div>ゲーム開始前です。</div>;
+    return <div className="dispMessageContainer"><div>本日は結婚式に出席していただき、誠にありがとうございます！短い時間ですが、披露宴を是非お楽しみください！</div></div>;
   } else {
     document.title = "ホーム画面";
   }
 
   if (!isLoggedIn) {
-    return <div>ログインされておりません。申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください。</div>
+    return <div className="dispMessageContainer"><div>ログインされておりません。申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください。</div></div>
   } else {
     return (
       <>

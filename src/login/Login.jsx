@@ -71,15 +71,15 @@ const Login = ({ game }) => {
 
 
   if (game.status === 0) {
-    return <div>ゲーム開始前です。</div>;
+    return <div className="dispMessageContainer"><div>本日は結婚式に出席していただき、誠にありがとうございます！短い時間ですが、披露宴を是非お楽しみください！</div></div>;
   }
 
   if (userId === "") {
-    return <div>申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください</div>
+    return <div className="dispMessageContainer"><div>申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください</div></div>
   } else {
     return (
       <>
-        <h2>お名前登録画面</h2>
+        <h3 className="SubTitleLabel">お名前登録画面</h3>
         <LoginContainerDiv>
           <LoginTextField
               value={name}
