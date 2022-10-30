@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import 'mission/components/css/Kujibiki.css'
 import MissionSendButton from 'mission/components/parts/MissionSendButton';
 
-const Kujibiki = ({ mission, clearMission, failedMission, setDialogInfo, answered, setMissionImageTextInfo  }) => {
+const Kujibiki = ({ game, mission, clearMission, failedMission, setDialogInfo, answered, setMissionImageTextInfo  }) => {
   const [isTimer, setIsTimer] = useState(false);
   const [result, setResult] = useState(null);
 
@@ -69,7 +69,7 @@ const Kujibiki = ({ mission, clearMission, failedMission, setDialogInfo, answere
   return (
   <>
     <div className="KujiInput">
-        <MissionSendButton answered={answered} onClick={kuji} disabled={ isTimer }>
+        <MissionSendButton answered={answered} onClick={kuji} disabled={ isTimer ||  game.status === 4}>
           くじを引く
         </MissionSendButton>
     </div>

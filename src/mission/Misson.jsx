@@ -15,6 +15,7 @@ import Kujibiki from './components/Kujibiki';
 import Push from './components/Push';
 // import Tutorial from './components/Tutorial';
 import Staff from './components/Staff';
+import OurComment from './components/OurComment';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -99,15 +100,15 @@ const Mission = ({ missions, answereds, game }) => {
       case 0:
         return <Choice game={game} mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 1:
-        return <Riddle mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
+        return <Riddle game={game} mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 2:
-        return <FreeWords mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
+        return <FreeWords game={game} mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 3:
         return <Choice  game={game} mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 4:
-        return <Kujibiki mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered} setMissionImageTextInfo={setMissionImageTextInfo} />;
+        return <Kujibiki game={game} mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered} setMissionImageTextInfo={setMissionImageTextInfo} />;
       case 5:
-        return <Push mission={mission} clearMission={clearMissionWithDocumentId} setDialogInfo={setDialogInfo} answered={answered} setBackButtonDisable={setBackButtonDisable} />;
+        return <Push game={game} mission={mission} clearMission={clearMissionWithDocumentId} setDialogInfo={setDialogInfo} answered={answered} setBackButtonDisable={setBackButtonDisable} />;
       case 6:
         return <Staff mission={mission} />;
         default:
@@ -148,6 +149,7 @@ const BackButton = styled(Button)(
         <h3 className="SubTitleLabel">{mission.title}</h3>
           <MissionImageText mission={missionImageTextInfo} />
         {viewMissionDetail()}
+        {answered !== null || game.status === 4 ? <OurComment mission={mission} /> : ""}
         <MaskDialog
             onClose={handleDialogClose}
             open={dialogInfo['open']}

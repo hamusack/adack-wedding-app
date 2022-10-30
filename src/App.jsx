@@ -10,6 +10,7 @@ import { collection ,onSnapshot, query, doc, orderBy } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { RotatingLines } from 'react-loader-spinner'
 
 function App() {
   const theme = createTheme({
@@ -135,19 +136,38 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+  const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
+  }, []);
+
+
   return (
       <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home game={game} missions={missions} answereds={answereds} />} / >
-          <Route path='/mission' element={<Mission game={game} missions={missions} answereds={answereds} />} / >
-          <Route path='/login/*' element={<Login game={game} />} />
-          <Route path='/admin/*' element={<Admin game={game} missions={missions} answereds={answereds} />} />
-
-      </Routes>
-      </BrowserRouter>
-      </ThemeProvider>
+      {loading ? (
+        <div className="loading">
+          <RotatingLines
+          strokeColor="#fff"
+          strokeWidth="4"
+          animationDuration="1"
+          width="96"
+          visible={true}
+          />
+        </div>
+      ) :
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home game={game} missions={missions} answereds={answereds} />} / >
+            <Route path='/mission' element={<Mission game={game} missions={missions} answereds={answereds} />} / >
+            <Route path='/login/*' element={<Login game={game} />} />
+            <Route path='/admin/*' element={<Admin game={game} missions={missions} answereds={answereds} />} />
+        </Routes>
+        </BrowserRouter>
+      }
+    </ThemeProvider>
   );
 }
 

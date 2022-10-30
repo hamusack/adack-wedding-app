@@ -32,7 +32,8 @@ export const MissionGroups = ({ game, missions, answereds }) => {
   <>
     <div className="missionGroups">
         <div className="missionGroupPoints">
-          <span className="missionNowPoint">{nowPoint()}</span>pt<span className="missionNextPoint">next:{ nextPoint() }pt</span>
+          <span className="missionNowPoint">{nowPoint()}</span>pt<br/>
+          <span className="missionNextPoint">next:{ nextPoint() }pt</span>
         </div>
     </div>
   </>

@@ -3,7 +3,7 @@ import MissionSendButton from "mission/components/parts/MissionSendButton";
 import("mission/components/css/FreeWords.css");
 
 
-const FreeWords = ({ mission, clearMission, setDialogInfo, answered }) => {
+const FreeWords = ({ game, mission, clearMission, setDialogInfo, answered }) => {
   const WRONG_TEXT = "もう少し書いて…";
   const [answer, setAnswer] = useState("");
 
@@ -33,9 +33,9 @@ const FreeWords = ({ mission, clearMission, setDialogInfo, answered }) => {
   return (
     <>
       <div className="freeWordsInput">
-        <textarea className="freeWordsTextArea" value={answer} onChange={(e) => setAnswer(e.target.value)} disabled={answered !== null} />
+        <textarea className="freeWordsTextArea" value={answer} onChange={(e) => setAnswer(e.target.value)} disabled={answered !== null || game.status === 4} />
         <div className="sendContainer">
-          <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} >
+          <MissionSendButton answered={answered} disabled={ game.status === 4 } onClick={answerCheck} onBlur={answerClear} >
             送信
           </MissionSendButton>
         </div>

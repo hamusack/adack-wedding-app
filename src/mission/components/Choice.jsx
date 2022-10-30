@@ -89,7 +89,7 @@ const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, ans
       </div>
       <div className="sendContainer">
         <p className="attention">回答は一回限り！</p>
-        <MissionSendButton answered={answered} onClick={sendAnswer} disabled={choiceBtn == null || choiceBtn === "" || answered !== null}>
+        <MissionSendButton answered={answered} onClick={sendAnswer} disabled={choiceBtn == null || choiceBtn === "" || answered !== null || game.status === 4}>
           送信
         </MissionSendButton>
       </div>

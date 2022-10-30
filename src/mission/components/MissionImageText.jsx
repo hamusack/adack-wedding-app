@@ -1,5 +1,4 @@
 const MissionImageText = ({ mission }) => {
-  console.log(mission)
   switch (mission.type) {
     case 0:
     case 1:
@@ -29,11 +28,11 @@ const MissionImageText = ({ mission }) => {
                 <div className="missionText">
                   <span >{mission.value.split('\n').map((t,index) => (<span key={index}>{t}<br /></span>))}</span>
                 </div>
-              </div>
-              <div className="missionExtraContainer">
+                <div className="missionExtraContainer">
                 <div className="missionExtraValue">
                     <span >{mission.extraValue.split('\n').map((t, index) => (<span key={index}>{t}<br /></span>))}</span>
                 </div>
+              </div>
               </div>
             </div>
           </>

@@ -30,14 +30,16 @@ const Home = ({ game, missions, answereds }) => {
           {
             game.status !== 1 &&
             <div className="groupContainer">
-              <h3 className="SubTitleLabel">現在の達成度</h3>
-              <div className="missionGroupsContainer">
+              {/* <h3 className="SubTitleLabel">現在の達成度</h3> */}
+                <h2 className="heading07" data-en="Achievement!"><span>現在の達成度</span></h2>
+                <div className="missionGroupsContainer">
                 <MissionGroups game={game} missions={missions} answereds={answereds} />
               </div>
             </div>
           }
           <div className="missionContainer">
-            <h3 className="SubTitleLabel">ミッション一覧</h3>
+            {/* <h3 className="SubTitleLabel">ミッション一覧</h3> */}
+            <h2 className="heading07" data-en="MissionList!"><div className="heading08">ミッション一覧</div></h2>
             {
               game.status === 1 &&
               <div>

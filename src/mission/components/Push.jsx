@@ -6,7 +6,7 @@ import ClickButton from 'common/components/ClickButton'
 import 'mission/components/css/Push.css';
 import { styled } from '@mui/material/styles';
 
-const Push = ({ mission, clearMission, setDialogInfo, answered, setBackButtonDisable }) => {
+const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackButtonDisable }) => {
   const CLEAR_COUNT = 6;
   const [buttonList, setButtonList] = useState([]);
   const [buttonSize, setButtonSize] = useState(0);
@@ -129,7 +129,7 @@ const Push = ({ mission, clearMission, setDialogInfo, answered, setBackButtonDis
       </div>
       <div className="sendContainer">
         <p className={answered === null ? "visibleFalse attention" : "attention"} >ミッション達成済</p>
-        <PushButton className="pushButton" disabled={buttonId !== null || answered !== null} onClick={onPush} >
+        <PushButton className="pushButton" disabled={buttonId !== null || answered !== null || game.status === 4} onClick={onPush} >
         ボタン
       </PushButton>
       </div>

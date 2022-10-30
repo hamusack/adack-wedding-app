@@ -11,4 +11,9 @@
   width:90%;
   margin:auto;
   text-align: center;
+  padding-bottom: 20px;;
+}
+
+.attention {
+  text-align: center;
 }

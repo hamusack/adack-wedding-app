@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import 'mission/components/css/Riddle.css';
 import MissionSendButton from "./parts/MissionSendButton";
 
-const Riddle = ({ mission, clearMission, setDialogInfo, answered }) => {
+const Riddle = ({ game, mission, clearMission, setDialogInfo, answered }) => {
   const WRONG_TEXT = "不正解！";
   const [answer, setAnswer] = useState("");
 
@@ -35,10 +35,10 @@ const Riddle = ({ mission, clearMission, setDialogInfo, answered }) => {
     <>
       <div className="riddleInput">
         <div>
-          <input className="riddleAnswer" disabled={answered !== null} type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} onFocus={answerClear} />
+          <input className="riddleAnswer" disabled={answered !== null ||  game.status === 4} type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} onFocus={answerClear} />
         </div>
         <div>
-          <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} >
+          <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} disabled={answered !== null ||  game.status === 4}>
           送信
           </MissionSendButton>
         </div>
