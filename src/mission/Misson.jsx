@@ -24,7 +24,7 @@ const Mission = ({ missions, answereds, game }) => {
   const navigation = useNavigate();
   const location = useLocation();
   const [authInfo] = useContext(AuthInfoContext);
-  const mission = missions === null ? { isImage:false, missionType : 0, value: "",title: "", path: "" } : missions.find((x) => x.id === location.state.id);
+  const mission = missions === null ? { isImage:false, missionType : 0, value: "",extraValue: "", title: "", path: "" } : missions.find((x) => x.id === location.state.id);
   const [missionImageTextInfo, setMissionImageTextInfo] = useState({})
   const [answered, setAnswered] = useState({});
   const [backButtonDisable, setBackButtonDisable] = useState(false);
@@ -63,7 +63,7 @@ const Mission = ({ missions, answereds, game }) => {
     if (missions == null || missions.length === 0) {
       navigation('/');
     } else {
-      setMissionImageTextInfo({ isImage: mission.isImage, type: mission.missionType, value: mission.value });
+      setMissionImageTextInfo({ isImage: mission.isImage, type: mission.missionType, value: mission.value, extraValue: mission.extraValue });
       setAnswered(getAnsweredsFilter(mission));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,13 +97,13 @@ const Mission = ({ missions, answereds, game }) => {
   const viewMissionDetail = () => {
     switch (mission.missionType) {
       case 0:
-        return <Choice mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
+        return <Choice game={game} mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 1:
         return <Riddle mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 2:
         return <FreeWords mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 3:
-        return <Choice mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
+        return <Choice  game={game} mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered}/>;
       case 4:
         return <Kujibiki mission={mission} clearMission={clearMission} failedMission={failedMission} setDialogInfo={setDialogInfo} answered={answered} setMissionImageTextInfo={setMissionImageTextInfo} />;
       case 5:

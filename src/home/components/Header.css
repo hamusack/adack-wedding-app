@@ -16,3 +16,10 @@
 .HeaderContainer #point {
   text-align: center;
 }
+
+#headerDeco {
+  width:30%;
+  display: block;
+  margin:5px auto;
+
+}

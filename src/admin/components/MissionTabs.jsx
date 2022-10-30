@@ -115,6 +115,7 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
       { field: "title", headerName: "タイトル", width: 300 },
       { field: "isImage", headerName: "問題表示", width: 100 },
       { field: "value", headerName: "問題", width: 200 },
+      { field: "extraValue", headerName: "追加文言", width: 200 },
       { field: "point", headerName: "Pt", width: 40 },
       { field: "missionType", headerName: "種別", width: 100 },
       { field: "answer", headerName: "答え", width: 150 },

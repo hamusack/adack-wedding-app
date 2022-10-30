@@ -52,6 +52,17 @@
   height:280px;
 }
 
+.missionExtraContainer {
+  margin:10px;
+  display: flex;
+}
+
+.missionExtraValue {
+  margin:auto;
+  margin-top:5px;
+  font-size:1.2em;
+}
+
 .backButton {
   width:80px;
   height:40px;

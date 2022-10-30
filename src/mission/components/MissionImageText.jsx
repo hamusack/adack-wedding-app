@@ -1,4 +1,5 @@
 const MissionImageText = ({ mission }) => {
+  console.log(mission)
   switch (mission.type) {
     case 0:
     case 1:
@@ -12,6 +13,11 @@ const MissionImageText = ({ mission }) => {
               <div className="missionImage">
                 <img src={`${process.env.PUBLIC_URL}/images/missions/${mission.value}`} alt="謎"></img>
               </div>
+              <div className="missionExtraContainer">
+                <div className="missionExtraValue">
+                    <span >{mission.extraValue.split('\n').map((t, index) => (<span key={index}>{t}<br /></span>))}</span>
+                </div>
+              </div>
             </div>
           </>
         );
@@ -22,6 +28,11 @@ const MissionImageText = ({ mission }) => {
               <div className="missionTextContainer">
                 <div className="missionText">
                   <span >{mission.value.split('\n').map((t,index) => (<span key={index}>{t}<br /></span>))}</span>
+                </div>
+              </div>
+              <div className="missionExtraContainer">
+                <div className="missionExtraValue">
+                    <span >{mission.extraValue.split('\n').map((t, index) => (<span key={index}>{t}<br /></span>))}</span>
                 </div>
               </div>
             </div>

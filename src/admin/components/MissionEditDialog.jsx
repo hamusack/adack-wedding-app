@@ -63,6 +63,18 @@ function MissionEditDialog({ onSave, onClose, open, mission, mode }) {
                 fullWidth
                 margin="normal"
                 helperText="問題文 または 画像ファイル名"
+                multiline
+                />
+              <TextField
+                id="extraValue"
+                onChange={(e) => changeData(e.target.id, e.target.value)}
+                onBlur={(e) => changeData(e.target.id, e.target.value)}
+                defaultValue={copyMissions.extraValue}
+                label="問題追加テキスト"
+                fullWidth
+                margin="normal"
+                helperText="画像＋問題文など出したい場合（4択の択とか）"
+                multiline
                 />
               <FormControlLabel control={
                 <Switch

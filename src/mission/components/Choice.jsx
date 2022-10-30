@@ -1,11 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,  } from "react";
+import { useNavigate } from 'react-router-dom'
 import "mission/components/css/Choice.css";
 import MissionSendButton from "mission/components/parts/MissionSendButton";
 import ChoiceButton, {selectedButton, correctButton, normalButton} from "mission/components/parts/ChoiceButton"
 
-const Choice = ({ mission, clearMission, failedMission, setDialogInfo, answered }) => {
+const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, answered }) => {
   const [choiceBtn, setChoiceBtn] = useState("");
   const [correctBtn, setCorrectBtn] = useState("");
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    console.log('first');
+    if (game === null) {
+      return;
+    } else if (game.status !== 1 && mission.missionType === 0) {
+      navigation('/');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game])
+
   const choiceBtnPushOn = (e) => {
     setChoiceBtn(e.target.value);
   };
