@@ -15,6 +15,15 @@ const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackBut
   const [isClear, setIsClear] = useState(false);
 
   useEffect(() => {
+    // ブラウザバックを禁止する
+    window.addEventListener('popstate', (e) => {
+      if (buttonId !== null) {
+        deleteDoc(doc(db, "button", buttonId));
+      }
+    });
+  })
+
+  useEffect(() => {
     const now = new Date()
     now.setSeconds(now.getSeconds() - 5);
     const checkTime = Timestamp.fromDate(now)
@@ -103,7 +112,7 @@ const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackBut
   const onPush = async () => {
     const docRef = await addDoc(collection(db, "button"), { user: authInfo.userId, createdAt: serverTimestamp() });
     setButtonId(docRef.id);
-    setBackButtonDisable(true);
+    // setBackButtonDisable(true);
   }
 
   const PushButton = styled(ClickButton)(({ theme }) => ({

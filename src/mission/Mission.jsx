@@ -134,6 +134,26 @@ const BackButton = styled(Button)(
   })
 );
 
+  const typeName = (type) => {
+    switch (type) {
+      case 0:
+        return 'Yontaku!';
+      case 1:
+        return 'Nazotoki!';
+      case 2:
+        return 'FreeWords!';
+      case 3:
+        return 'Quiz!';
+      case 4:
+        return 'Omikuji!';
+      case 5:
+        return 'Push!';
+      case 6:
+        return 'Action!';
+      default:
+        return '';
+    }
+  }
 
   if (!isLoggedIn) {
     return <div>ログインされておりません。申し訳ございませんがQRコードを読み込み直してください。何度もこの画面が表示される場合、スタッフにお声がけください。</div>
@@ -146,7 +166,7 @@ const BackButton = styled(Button)(
           // className={ mission.missionType === 0 ? "backButton visibleFalse": "backButton" }
           className="backButton"
         >{"戻る"}</BackButton>
-        <h3 className="SubTitleLabel">{mission.title}</h3>
+        <h3 className="heading07" data-en={typeName(mission.missionType)}>{mission.title}</h3>
           <MissionImageText mission={missionImageTextInfo} />
         {viewMissionDetail()}
         {answered !== null || game.status === 4 ? <OurComment mission={mission} /> : ""}

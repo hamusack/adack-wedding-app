@@ -8,7 +8,7 @@ export const MissionGroups = ({ game, missions, answereds }) => {
     }
     let retPoint = 0;
     const calcAnswered = answereds.filter(
-      (v) => v.missonType !== 5 || (v.missonType === 5 && v.userId === ""));
+      (v) => v.missionType !== 5 || (v.missionType === 5 && v.user === ""));
     calcAnswered.map((v) => retPoint += Number(v.point));
     if (game.status >= 3) {
       return '???';

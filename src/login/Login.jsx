@@ -10,13 +10,11 @@ import { styled } from '@mui/material/styles';
 
 const LoginTextField = styled(TextField)(({ theme }) => ({
   width: 200,
-  marginLeft:20,
 }));
 
 const LoginButton = styled(Button)(({ theme }) => ({
   width: 180,
   marginTop: 20,
-  marginLeft:20,
   backgroundColor: "#030244",
   border:"solid 1px #FFDF04",
   color:"#FFF"
@@ -28,6 +26,7 @@ const LoginContainerDiv = styled("div")(({ theme }) => ({
   flexFlow: "column",
   alignItems: "center",
   justifyContent: "center",
+  margin:"0 auto",
 }));
 
 const Login = ({ game }) => {
@@ -79,7 +78,7 @@ const Login = ({ game }) => {
   } else {
     return (
       <>
-        <h3 className="SubTitleLabel">お名前登録画面</h3>
+        <h2 className="heading07" data-en="NameEntry!"><span>お名前登録</span></h2>
         <LoginContainerDiv>
           <LoginTextField
               value={name}

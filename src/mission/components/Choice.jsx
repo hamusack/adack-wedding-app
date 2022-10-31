@@ -10,7 +10,6 @@ const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, ans
   const navigation = useNavigate();
 
   useEffect(() => {
-    console.log('first');
     if (game === null) {
       return;
     } else if (game.status !== 1 && mission.missionType === 0) {

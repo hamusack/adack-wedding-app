@@ -46,7 +46,9 @@ const Admin = ({ game, missions, answereds }) => {
       return 0;
     }
     let retPoint = 0;
-    answereds.map((v) => (retPoint += Number(v.point)));
+    answereds.filter((v) => v.missionType !== 5 || (v.missionType === 5 && v.user === ""))
+      .map((s) => (retPoint += Number(s.point)));
+
     return retPoint;
   };
 

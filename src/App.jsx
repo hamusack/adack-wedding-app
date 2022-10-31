@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from 'login/Login';
 import Admin from 'admin/Admin';
 import Home from 'home/Home';
-import Mission from 'mission/Misson';
+import Mission from 'mission/Mission';
 
 import { db } from 'common/Firebase'
 import { collection ,onSnapshot, query, doc, orderBy } from 'firebase/firestore'
