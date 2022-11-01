@@ -3,7 +3,10 @@ import "mission/components/css/OurComment.css";
 const OurComment = ({ mission }) => {
   return (
     <>
-      <h2 className="heading07" data-en="Comment!"><div className="heading08">新郎新婦コメント</div></h2>
+      {mission.comment_s !== "" || mission.comment_a !== ""
+        ? <h2 className="heading07" data-en="Comment!"><div className="heading08">新郎新婦コメント</div></h2>
+        : ""
+      }
       {mission.comment_s !== "" ? (
         <div className="CommentContainer">
           <div className="balloon5">

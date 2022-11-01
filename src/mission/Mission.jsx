@@ -13,6 +13,7 @@ import MissionImageText from 'mission/components/MissionImageText'
 import FreeWords from './components/FreeWords';
 import Kujibiki from './components/Kujibiki';
 import Push from './components/Push';
+import Extra from './components/Extra';
 // import Tutorial from './components/Tutorial';
 import Staff from './components/Staff';
 import OurComment from './components/OurComment';
@@ -29,6 +30,10 @@ const Mission = ({ missions, answereds, game }) => {
   const [missionImageTextInfo, setMissionImageTextInfo] = useState({})
   const [answered, setAnswered] = useState({});
   const [backButtonDisable, setBackButtonDisable] = useState(false);
+  const [isExClear, setIsExClear] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   const answeredFilter = (mission) => {
     let ans = null;
@@ -111,7 +116,9 @@ const Mission = ({ missions, answereds, game }) => {
         return <Push game={game} mission={mission} clearMission={clearMissionWithDocumentId} setDialogInfo={setDialogInfo} answered={answered} setBackButtonDisable={setBackButtonDisable} />;
       case 6:
         return <Staff mission={mission} />;
-        default:
+      case 7:
+        return <Extra game={game} mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered} isExClear={isExClear} />;
+          default:
         return "ミッション種別が不明です";
     }
   }
@@ -150,7 +157,9 @@ const BackButton = styled(Button)(
         return 'Push!';
       case 6:
         return 'Action!';
-      default:
+      case 7:
+        return 'Action!';
+        default:
         return '';
     }
   }
@@ -167,9 +176,9 @@ const BackButton = styled(Button)(
           className="backButton"
         >{"戻る"}</BackButton>
         <h3 className="heading07" data-en={typeName(mission.missionType)}>{mission.title}</h3>
-          <MissionImageText mission={missionImageTextInfo} />
+        <MissionImageText game={game} mission={missionImageTextInfo} setIsExClear={setIsExClear} />
         {viewMissionDetail()}
-        {answered !== null || game.status === 4 ? <OurComment mission={mission} /> : ""}
+        {answered !== null || game.status >= 4 ? <OurComment mission={mission} /> : ""}
         <MaskDialog
             onClose={handleDialogClose}
             open={dialogInfo['open']}

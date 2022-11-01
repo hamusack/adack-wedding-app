@@ -69,7 +69,7 @@ const Kujibiki = ({ game, mission, clearMission, failedMission, setDialogInfo, a
   return (
   <>
     <div className="KujiInput">
-        <MissionSendButton answered={answered} onClick={kuji} disabled={ isTimer ||  game.status === 4}>
+        <MissionSendButton answered={answered} onClick={kuji} disabled={ isTimer ||  game.status >= 4}>
           くじを引く
         </MissionSendButton>
     </div>

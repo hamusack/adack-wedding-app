@@ -1,0 +1,25 @@
+.missionExtraContainer {
+  margin:0;
+}
+.exMissionImage {
+  margin:0%;
+  padding:0%;
+  height:420px;
+  width:100%;
+  background-color: #fff;
+  position: relative;
+}
+
+.foods {
+  position: absolute;
+  z-index: 200;
+}
+
+
+.exImage {
+  position: absolute;
+}
+
+#toruko {
+  opacity: 0;
+}

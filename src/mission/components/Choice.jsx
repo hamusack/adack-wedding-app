@@ -1,8 +1,8 @@
-import { useState, useEffect,  } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "mission/components/css/Choice.css";
 import MissionSendButton from "mission/components/parts/MissionSendButton";
-import ChoiceButton, {selectedButton, correctButton, normalButton} from "mission/components/parts/ChoiceButton"
+import ChoiceButton, { selectedButton, correctButton, normalButton } from "mission/components/parts/ChoiceButton";
 
 const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, answered }) => {
   const [choiceBtn, setChoiceBtn] = useState("");
@@ -13,10 +13,10 @@ const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, ans
     if (game === null) {
       return;
     } else if (game.status !== 1 && mission.missionType === 0) {
-      navigation('/');
+      navigation("/");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game]);
 
   const choiceBtnPushOn = (e) => {
     setChoiceBtn(e.target.value);
@@ -58,7 +58,7 @@ const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, ans
     } else {
       failedMission(choiceBtn);
     }
-  }
+  };
 
   useEffect(() => {
     if (answered !== null && Object.keys(answered).length !== 0) {
@@ -66,37 +66,48 @@ const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, ans
       if (answered.text !== mission.answer) {
         setCorrectBtn(mission.answer);
       }
+    } else if (game.status >= 4) {
+      setCorrectBtn(mission.answer);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answered]);
+  }, [game, answered]);
 
   return (
     <>
       <div className="choiceInput">
-        <ChoiceButton style={getButtonStyle("A")} onClick={answered === null ? choiceBtnPushOn : null} value="A">
+        <ChoiceButton style={getButtonStyle("A")} onClick={answered === null && game.status < 4 ? choiceBtnPushOn : null} value="A">
           A
         </ChoiceButton>
-        <ChoiceButton style={getButtonStyle("B")} onClick={answered === null ? choiceBtnPushOn : null} value="B">
+        <ChoiceButton style={getButtonStyle("B")} onClick={answered === null && game.status < 4 ? choiceBtnPushOn : null} value="B">
           B
         </ChoiceButton>
-        <ChoiceButton style={getButtonStyle("C")} onClick={answered === null ? choiceBtnPushOn : null} value="C">
+        <ChoiceButton style={getButtonStyle("C")} onClick={answered === null && game.status < 4 ? choiceBtnPushOn : null} value="C">
           C
         </ChoiceButton>
-        <ChoiceButton style={getButtonStyle("D")} onClick={answered === null ? choiceBtnPushOn : null} value="D">
+        <ChoiceButton style={getButtonStyle("D")} onClick={answered === null && game.status < 4 ? choiceBtnPushOn : null} value="D">
           D
         </ChoiceButton>
       </div>
       <div className="sendContainer">
         <p className="attention">回答は一回限り！</p>
-        <MissionSendButton answered={answered} onClick={sendAnswer} disabled={choiceBtn == null || choiceBtn === "" || answered !== null || game.status === 4}>
+        <MissionSendButton
+          answered={answered}
+          onClick={sendAnswer}
+          disabled={choiceBtn == null || choiceBtn === "" || answered !== null || game.status >= 4}
+        >
           送信
         </MissionSendButton>
       </div>
-      {answered !== null && mission.missionType === 0 &&
+      {answered !== null && mission.missionType === 0 && (
         <div>
-        <p className="attention">回答が送信されました。<br />新郎を応援しよう！</p>
+          <p className="attention">
+            回答が送信されました。
+            <br />
+            新郎を応援しよう！
+          </p>
         </div>
-      }
+      )}
     </>
   );
 };

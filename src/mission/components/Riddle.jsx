@@ -35,10 +35,10 @@ const Riddle = ({ game, mission, clearMission, setDialogInfo, answered }) => {
     <>
       <div className="riddleInput">
         <div>
-          <input className="riddleAnswer" disabled={answered !== null ||  game.status === 4} type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} onFocus={answerClear} />
+          <input className="riddleAnswer" disabled={answered !== null ||  game.status >= 4} type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} onFocus={answerClear} />
         </div>
         <div>
-          <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} disabled={answered !== null ||  game.status === 4}>
+          <MissionSendButton answered={answered} onClick={answerCheck} onBlur={answerClear} disabled={answered !== null ||  game.status >= 4}>
           送信
           </MissionSendButton>
         </div>

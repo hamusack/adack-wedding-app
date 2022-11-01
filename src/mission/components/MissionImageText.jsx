@@ -1,11 +1,13 @@
-const MissionImageText = ({ mission }) => {
+import MissionImageTextEx from "./MissionImageTextEx";
+
+const MissionImageText = ({ game, mission, setIsExClear }) => {
   switch (mission.type) {
     case 0:
     case 1:
     case 2:
     case 3:
     case 6:
-        if (mission.isImage) {
+      if (mission.isImage) {
         return (
           <>
             <div className="missionVisualContainer">
@@ -50,6 +52,8 @@ const MissionImageText = ({ mission }) => {
       );
     case 5:
       return "";
+    case 7:
+      return <MissionImageTextEx game={game} mission={mission} setIsExClear={setIsExClear} />;
     default:
       return "想定外のミッション種別";
   }

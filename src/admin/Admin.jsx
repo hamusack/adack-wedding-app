@@ -103,6 +103,7 @@ const Admin = ({ game, missions, answereds }) => {
           <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('missions')}>ミッション全削除</button>
           <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('answered')}>クリア状況全削除</button>
           <button className="gameControlButton warningButton" onClick={() => collectionAllDelete('users')}>ユーザ全削除</button>
+          <button className="gameControlButton" onClick={() => changeGameStatus(7)}>ーーー</button>
         </div>
       </div>
 

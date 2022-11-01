@@ -138,7 +138,7 @@ const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackBut
       </div>
       <div className="sendContainer">
         <p className={answered === null ? "visibleFalse attention" : "attention"} >ミッション達成済</p>
-        <PushButton className="pushButton" disabled={buttonId !== null || answered !== null || game.status === 4} onClick={onPush} >
+        <PushButton className="pushButton" disabled={buttonId !== null || answered !== null || game.status >= 4} onClick={onPush} >
         ボタン
       </PushButton>
       </div>
