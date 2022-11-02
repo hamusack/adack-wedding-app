@@ -45,7 +45,7 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
           <div className="CommentContainer">
             <div className="balloon5">
               <div className="faceicon">
-                <img src={`${process.env.PUBLIC_URL}/images/sack_icon.jpg`} alt="さっく"></img>
+                <img src={`${process.env.PUBLIC_URL}/images/sack_icon_normal.jpg`} alt="さっく"></img>
               </div>
               <div className="chatting">
                 <div className="says">
@@ -69,7 +69,7 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
           <div className="CommentContainer">
             <div className="balloon5">
               <div className="faceicon">
-                <img src={`${process.env.PUBLIC_URL}/images/sack_icon.jpg`} alt="さっく"></img>
+                <img src={`${process.env.PUBLIC_URL}/images/sack_icon_normal.jpg`} alt="さっく"></img>
               </div>
               <div className="chatting">
                 <div className="says">

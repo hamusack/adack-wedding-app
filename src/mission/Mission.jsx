@@ -178,7 +178,7 @@ const BackButton = styled(Button)(
         <h3 className="heading07" data-en={typeName(mission.missionType)}>{mission.title}</h3>
         <MissionImageText game={game} mission={missionImageTextInfo} setIsExClear={setIsExClear} />
         {viewMissionDetail()}
-        {answered !== null || game.status >= 4 ? <OurComment mission={mission} /> : ""}
+        {answered !== null || game.status >= 4 ? <OurComment game={game} mission={mission} /> : ""}
         <MaskDialog
             onClose={handleDialogClose}
             open={dialogInfo['open']}

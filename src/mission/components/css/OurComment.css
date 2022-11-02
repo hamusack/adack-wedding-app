@@ -49,3 +49,8 @@
   margin: 0;
   padding: 0;
 }
+
+.exred {
+  color:red;
+  font-weight:bold;
+}
