@@ -239,17 +239,15 @@ const MissionImageTextEx = ({ game, mission, setIsExClear }) => {
               </Draggable>
             </div>
           </div>
-          <div className="missionTextContainer">
-            <div className="missionText">
-              <span >{mission.value.split('\n').map((t,index) => (<span key={index}>{t}<br /></span>))}</span>
-            </div>
+          <div className="missionExtraValue">
+            <span >{mission.value.split('\n').map((t,index) => (<span key={index}>{t}<br /></span>))}</span>
           </div>
         </div>
         <MaskDialog
             onClose={handleDialogClose}
             open={exDialogInfo['open']}
             title={'【謎解きミッション No.Ex】クリア'}
-            value={'トルコライスを作成しました！'}
+            value={'トルコライスが出来ました！'}
           />
       </>
     );
