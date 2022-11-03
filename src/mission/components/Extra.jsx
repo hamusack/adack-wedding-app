@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import 'mission/components/css/Extra.css';
 import MissionSendButton from "./parts/MissionSendButton";
+import OurCommentParts from "./OurCommentParts";
 
 const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear }) => {
   const WRONG_TEXT = "不正解！";
@@ -42,42 +43,21 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
       return (
         <>
           <h2 id="endingComment" className="heading07" data-en="Comment!"><div className="heading08">新郎新婦コメント</div></h2>
-          <div className="CommentContainer">
-            <div className="balloon5">
-              <div className="faceicon">
-                <img src={`${process.env.PUBLIC_URL}/images/sack_icon_normal.jpg`} alt="さっく"></img>
-              </div>
-              <div className="chatting">
-                <div className="says">
-                  <p>これにて、本当にすべてのミッションが終了となります。最後の最後までお楽しみいただき、ありがとうございました！</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="CommentContainer">
-            <div className="balloon5">
-              <div className="faceicon">
-                <img src={`${process.env.PUBLIC_URL}/images/adaku_icon.jpg`} alt="あだく"></img>
-              </div>
-              <div className="chatting">
-                <div className="says">
-                  <p>これからも私達と遊んでください！私達の家にも来てくださいね！もちろん、私達もお呼ばれすればいつでも皆様のお家に伺わせていただきます！</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="CommentContainer">
-            <div className="balloon5">
-              <div className="faceicon">
-                <img src={`${process.env.PUBLIC_URL}/images/sack_icon_normal.jpg`} alt="さっく"></img>
-              </div>
-              <div className="chatting">
-                <div className="says">
-                  <p>引き続き、これからも末永くよろしくお願いいたします！</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <OurCommentParts
+            game={game}
+            icon={`sack_icon_normal.jpg`}
+            comments="これにて、本当にすべてのミッションが終了となります。最後の最後までお楽しみいただき、ありがとうございました！" name="さっく"
+          />
+          <OurCommentParts
+            game={game}
+            icon={`adaku_icon.jpg`}
+            comments="これからも私達と遊んでください！私達の家にも来てくださいね！もちろん、私達もお呼ばれすればいつでも皆様のお家に伺わせていただきます！" name="あだく"
+          />
+          <OurCommentParts
+            game={game}
+            icon={`sack_icon_normal.jpg`}
+            comments="引き続き、これからも末永くよろしくお願いいたします！" name="さっく"
+          />
           <div className="staffRoles">
             <h3 className="heading07" data-en="Staff!">余興スタッフ</h3>
           </div>

@@ -1,7 +1,10 @@
 const OurCommentParts = ({ game, icon, comments, name }) => {
   const onClick = (e) => {
     if (game.status === 7 && name=== "さっく") {
-      document.getElementById("changeColor").classList.add("exred");
+      const dom = document.getElementById("changeColor");
+      if (dom !== null) {
+        dom.classList.add("exred");
+      }
     }
   }
   const createMarkup = () => {

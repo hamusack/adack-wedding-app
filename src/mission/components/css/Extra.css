@@ -4,7 +4,7 @@
 .exMissionImage {
   margin:0%;
   padding:0%;
-  height:420px;
+  height:240px;
   width:100%;
   background-color: #fff;
   position: relative;
@@ -13,6 +13,7 @@
 .foods {
   position: absolute;
   z-index: 200;
+  width:20%;
 }
 
 

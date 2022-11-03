@@ -5,25 +5,23 @@ import MaskDialog from "common/components/MaskDialog";
 
 const MissionImageTextEx = ({ game, mission, setIsExClear }) => {
   const { width } = useWindowDimensions();
-  const DISH_POS = { x: width * 0.89 / 2 - 85, y: 310 };
-  const PERSON_POS = { x: width * 0.89 / 2 - 75, y: 200 };
+  const DISH_POS = { x: width * 0.89 / 2 - 70 , y: 170 };
+  const PERSON_POS = { x: width * 0.89 / 2 - 80, y: 60 };
   const DISH_SET_POS = [
-    { x: DISH_POS.x + 20, y: 380},
-    { x: DISH_POS.x + 150, y: 380},
-    { x: DISH_POS.x + 85, y: 380},
+    { x: DISH_POS.x + 20, y: 230},
+    { x: DISH_POS.x + 120, y: 230},
+    { x: DISH_POS.x + 75, y: 230},
   ]
   const FEAD_SEC = 1500;
 
   const [objectsPos, setObjectsPos] = useState({
-       lemon: { x: width * 0.89 / 6 * 1 - 32.5, y: 40, dishSetNo:-1 } ,
+       lemon: { x: width * 0.89 / 6 * 1 - 32.5, y: 10, dishSetNo:-1 } ,
        pirahu: { x: width * 0.89 / 6 * 3 - 32.5, y: 0 , dishSetNo:-1 } ,
-       rata: { x: width * 0.89 / 6 * 5 - 32.5, y: 10 , dishSetNo:-1 } ,
-       curry: { x: width * 0.89 / 6 * 1 - 32.5, y: 150 , dishSetNo:-1 } ,
-       hamburg: { x: width * 0.89 / 6 * 3 - 32.5, y: 120 , dishSetNo:-1 } ,
-       napori: { x: width * 0.89 / 6 * 5 - 32.5, y: 120 , dishSetNo:-1 } ,
-       mon: { x: width * 0.89 / 6 * 1 - 47.5, y: 270 , dishSetNo:-1 } ,
-       tonkatsu: { x: width * 0.89 / 6 * 5 - 32.5, y: 200 , dishSetNo:-1 } ,
-       omu: { x: width * 0.89 / 6 * 5 - 32.5, y: 300 , dishSetNo:-1 } ,
+       rata: { x: width * 0.89 / 6 * 5 - 32.5, y: 5 , dishSetNo:-1 } ,
+       curry: { x: width * 0.89 / 6 * 1 - 32.5, y: 80 , dishSetNo:-1 } ,
+       hamburg: { x: width * 0.89 / 6 * 1 - 25.5, y: 150 , dishSetNo:-1 } ,
+       napori: { x: width * 0.89 / 6 * 5 - 32.5, y: 80 , dishSetNo:-1 } ,
+       tonkatsu: { x: width * 0.89 / 6 * 5 - 42.5, y: 140 , dishSetNo:-1 } ,
   });
 
   const [axis, setAxis] = useState(game.status === 7 ? 'both' : 'none');
@@ -117,7 +115,7 @@ const MissionImageTextEx = ({ game, mission, setIsExClear }) => {
         data.lastX >= DISH_POS.x - 40
         && data.lastX <= DISH_POS.x + 140
         && data.lastY >= DISH_POS.y - 30
-        && data.lastY <= 380
+        && data.lastY <= 270
       ) {
         const filterSetFoods = Object.values(objectsPos).filter((values) => values.dishSetNo !== -1).sort((a, b) => a.dishSetNo > b.dishSetNo ? 1 : -1);
         const blankNo = filterSetFoods.reduce((prev, v) => prev === v.dishSetNo ? prev + 1 : prev, 0);
@@ -203,28 +201,6 @@ const MissionImageTextEx = ({ game, mission, setIsExClear }) => {
               </Draggable>
               <Draggable
               position={{
-                x: objectsPos.mon.x,
-                y: objectsPos.mon.y
-              }}
-              onStop={onStop}
-              onStart={onStart}
-              axis={axis}
-              >
-              <img className="foods" id="mon" src={`${process.env.PUBLIC_URL}/images/missions/ex/mon.png`} alt="謎"></img>
-              </Draggable>
-              <Draggable
-              position={{
-                x: objectsPos.omu.x,
-                y: objectsPos.omu.y
-              }}
-              onStop={onStop}
-              onStart={onStart}
-              axis={axis}
-              >
-              <img className="foods" id="omu" src={`${process.env.PUBLIC_URL}/images/missions/ex/omu.png`} alt="謎"></img>
-              </Draggable>
-              <Draggable
-              position={{
                 x: objectsPos.tonkatsu.x,
                 y: objectsPos.tonkatsu.y
               }}
@@ -254,8 +230,8 @@ const MissionImageTextEx = ({ game, mission, setIsExClear }) => {
               </Draggable>
               <Draggable
                 defaultPosition={{
-                x: DISH_POS.x + 20,
-                y: DISH_POS.y,
+                x: DISH_POS.x + 10,
+                y: DISH_POS.y - 20,
                 }}
                 axis='none'
               >
