@@ -141,12 +141,16 @@ const BackButton = styled(Button)(
   })
 );
 
-  const typeName = (type) => {
+  const typeName = (title, type) => {
     switch (type) {
       case 0:
         return 'Yontaku!';
       case 1:
-        return 'Nazotoki!';
+        if (title.indexOf("チャレンジ") !== -1) {
+          return 'Action!';
+        } else {
+          return 'Nazotoki!';
+        }
       case 2:
         return 'FreeWords!';
       case 3:
@@ -175,7 +179,7 @@ const BackButton = styled(Button)(
           // className={ mission.missionType === 0 ? "backButton visibleFalse": "backButton" }
           className="backButton"
         >{"戻る"}</BackButton>
-        <h3 className="heading07" data-en={typeName(mission.missionType)}>{mission.title}</h3>
+        <h3 className="heading07" data-en={typeName(mission.title, mission.missionType)}>{mission.title}</h3>
         <MissionImageText game={game} mission={missionImageTextInfo} setIsExClear={setIsExClear} />
         {viewMissionDetail()}
         {answered !== null || game.status >= 4 ? <OurComment game={game} mission={mission} /> : ""}
