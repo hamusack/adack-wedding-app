@@ -272,7 +272,7 @@ const MissionImageTextEx = ({ game, mission, setIsExClear }) => {
         <MaskDialog
             onClose={handleDialogClose}
             open={exDialogInfo['open']}
-            title={'エクストラミッションクリア'}
+            title={'【謎解きミッション No.Ex】クリア'}
             value={'トルコライスを作成しました！'}
           />
       </>

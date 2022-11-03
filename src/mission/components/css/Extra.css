@@ -23,3 +23,31 @@
 #toruko {
   opacity: 0;
 }
+
+.staffTitle {
+	position: relative;
+	padding-top: 15px;
+  text-align: center;
+  font-size:1em;
+  margin-top:10px;
+  margin-bottom:10px;
+  font-weight: bold;
+}
+
+.staffTitle::before {
+	content: attr(data-en);
+	position: absolute;
+	transform: rotate(-8deg);
+	top: -8px;
+  width:100px;
+  left:50%;
+  margin-left: -110px;
+	color: #DABE00;
+	font-weight: 400;
+  font-family: 'Allura', cursive;
+	font-style: italic;
+}
+
+.staffNameList {
+  text-align: center;
+}

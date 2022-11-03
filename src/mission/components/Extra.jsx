@@ -78,6 +78,20 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
               </div>
             </div>
           </div>
+          <div className="staffRoles">
+            <h3 className="heading07" data-en="Staff!">余興スタッフ</h3>
+          </div>
+          <div className="staffTitle">ディレクター</div>
+            <div class="staffNameList">長嶋 くるみ（みーぬ）</div>
+          <div className="staffTitle">司会</div>
+          <div class="staffNameList">長嶋 くるみ（みーぬ）</div>
+          <div className="staffTitle">花嫁攫之助</div><div class="staffNameList">佐藤 大騎（鏡）</div>
+          <div className="staffTitle">スタッフ</div><div class="staffNameList">森國 渉（八索）<br />和田 匠（ぬるー）<br />豊田 啓介（常春）</div>
+          <div className="staffTitle">Webシステム</div><div class="staffNameList">和田 匠（ぬるー）<br/>松村 聡士（さっく）</div>
+          <div className="staffTitle">Webデザイン</div><div class="staffNameList">杉本 美菜子（あだく）<br/>松村 聡士（さっく）</div>
+          <div className="staffTitle">ミッション制作</div><div class="staffNameList">零狐春</div>
+          <div className="staffTitle">Ex謎制作</div><div class="staffNameList">松村 聡士（さっく）<br/> 杉本 美菜子（あだく）</div>
+          <div className="staffTitle">デバッグ</div><div class="staffNameList">今日来てくれた人を書いていく<br/><br/></div>
         </>
       );
     } else { return "" };

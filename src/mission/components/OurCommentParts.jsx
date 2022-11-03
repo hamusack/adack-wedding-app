@@ -1,6 +1,6 @@
 const OurCommentParts = ({ game, icon, comments, name }) => {
   const onClick = (e) => {
-    if (game.status === 7) {
+    if (game.status === 7 && name=== "さっく") {
       document.getElementById("changeColor").classList.add("exred");
     }
   }
@@ -11,16 +11,17 @@ const OurCommentParts = ({ game, icon, comments, name }) => {
     <>
       {comments !== "" ? (
         <div className="CommentContainer">
-          <div className="balloon5">
-            <div className="faceicon">
-              <img src={`${process.env.PUBLIC_URL}/images/${icon}`} alt={name} onClick={onClick}></img>
+
+        <div className="sb-box">
+            <div className="icon-img icon-img-left">
+              <img src={`${process.env.PUBLIC_URL}/images/${icon}`} alt={name} style={{ width: 70, height: 70 }} onClick={onClick}></img>
             </div>
-            <div className="chatting">
-              <div className="says">
-                <p dangerouslySetInnerHTML={createMarkup()} />
-              </div>
+            <div className="sb-side sb-side-left">
+                <div className="sb-txt sb-txt-left" dangerouslySetInnerHTML={createMarkup()}>
+                </div>
             </div>
           </div>
+
         </div>
       ) : ""}
     </>
