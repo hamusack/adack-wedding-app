@@ -23,7 +23,7 @@ const ClickButtonHandler = (WrappedComponent) => {
       e.persist(); //eventオブジェクトを切り離す
 
       clearTimeout(this.timer);
-      this.timer = setTimeout(callBack, 200, e);
+      this.timer = setTimeout(callBack, 500, e);
     }
     // ラップされるコンポーネントに、引き継いだpropsとハンドラを渡す
     render() {

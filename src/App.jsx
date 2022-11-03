@@ -4,6 +4,7 @@ import Login from 'login/Login';
 import Admin from 'admin/Admin';
 import Home from 'home/Home';
 import Mission from 'mission/Mission';
+import Result from 'result/Result';
 
 import { db } from 'common/Firebase'
 import { collection ,onSnapshot, query, doc, orderBy } from 'firebase/firestore'
@@ -164,6 +165,7 @@ function App() {
             <Route path='/mission' element={<Mission game={game} missions={missions} answereds={answereds} />} / >
             <Route path='/login/*' element={<Login game={game} />} />
             <Route path='/admin/*' element={<Admin game={game} missions={missions} answereds={answereds} />} />
+            <Route path='/result/*' element={<Result game={game} missions={missions} answereds={answereds} />} />
         </Routes>
         </BrowserRouter>
       }

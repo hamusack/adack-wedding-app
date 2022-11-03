@@ -71,7 +71,8 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
           <div className="staffTitle">Webデザイン</div><div class="staffNameList">杉本 美菜子（あだく）<br/>松村 聡士（さっく）</div>
           <div className="staffTitle">ミッション制作</div><div class="staffNameList">零狐春</div>
           <div className="staffTitle">Ex謎制作</div><div class="staffNameList">松村 聡士（さっく）<br/> 杉本 美菜子（あだく）</div>
-          <div className="staffTitle">デバッグ</div><div class="staffNameList">今日来てくれた人を書いていく<br/><br/></div>
+          <div className="staffTitle">デバッグ</div><div class="staffNameList">江戸川<br/>傘猫<br/>をわ<br/>無策師<br/>けーおん
+          <br/><br/></div>
         </>
       );
     } else { return "" };

@@ -1,0 +1,27 @@
+.resultCotainer {
+  width:90%;
+  margin: 0 auto;
+}
+
+.rankList {
+  text-align: left;
+  margin-left:40px;
+  margin-bottom:5px;
+  font-size:1.2em;
+}
+
+.rankList .rank {
+  margin:10px;
+}
+
+.rankList .table,.name,.point {
+  margin-right:10px;
+}
+
+.rankList .point{
+  font-weight: bold;
+}
+
+.resultSubject {
+  margin-bottom: 10px;
+}

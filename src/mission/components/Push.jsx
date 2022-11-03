@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { db } from 'common/Firebase'
-import { doc, addDoc, deleteDoc, collection, onSnapshot, serverTimestamp, query ,where, Timestamp} from 'firebase/firestore'
+import { doc, setDoc, deleteDoc, collection, onSnapshot, serverTimestamp, query ,where, Timestamp} from 'firebase/firestore'
 import { AuthInfoContext } from 'common/components/AuthContextProvider';
 import ClickButton from 'common/components/ClickButton'
 import 'mission/components/css/Push.css';
@@ -84,8 +84,10 @@ const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackBut
     if (buttonSize < CLEAR_COUNT) {
       return;
     } else {
-      setIsClear(true);
-      clearMission();
+      if (isClear) {
+        setIsClear(true);
+        clearMission();
+      }
       setDialogInfo({ open: true, title: "ミッション達成！", value: `「${mission.title}」をクリア！\n ポイントを${mission.point}ptゲット！` });
     }
 
@@ -110,8 +112,9 @@ const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackBut
   }, [buttonId])
 
   const onPush = async () => {
-    const docRef = await addDoc(collection(db, "button"), { user: authInfo.userId, createdAt: serverTimestamp() });
-    setButtonId(docRef.id);
+    // const docRef = await addDoc(collection(db, "button"), { user: authInfo.userId, createdAt: serverTimestamp() });
+    await setDoc(doc(db, "button", authInfo.userId), { user: authInfo.userId, createdAt: serverTimestamp() });
+    setButtonId(authInfo.userId);
     // setBackButtonDisable(true);
   }
 

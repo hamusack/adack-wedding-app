@@ -127,7 +127,6 @@ const Mission = ({ missions, answereds, game }) => {
     setDialogInfo(prev => {
       return {...prev, open: false}
     });
-    navigation('/');
   }
 
 const BackButton = styled(Button)(
