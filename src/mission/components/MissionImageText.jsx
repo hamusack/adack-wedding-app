@@ -51,7 +51,17 @@ const MissionImageText = ({ game, mission, setIsExClear }) => {
         </>
       );
     case 5:
-      return "";
+      return (
+        <>
+          <div className="missionVisualContainer">
+            <div className="missionTextContainer">
+              <div className="missionText">
+                <span >{mission.value.split('\n').map((t,index) => (<span key={index}>{t}<br /></span>))}</span>
+              </div>
+            </div>
+          </div>
+        </>
+        );
     case 7:
       return <MissionImageTextEx game={game} mission={mission} setIsExClear={setIsExClear} />;
     default:

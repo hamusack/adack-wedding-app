@@ -7,15 +7,19 @@ const OurComment = ({ game , mission }) => {
     if (mission.comment_sort === 0) {
       return (
         <>
-          <OurCommentParts game={game} icon={`sack_icon_${game.status !== 7 ? "normal" : mission.sack_icon_color}.jpg`} comments={mission.comment_s} name="さっく" />
-          <OurCommentParts game={game} icon="adaku_icon.jpg" comments={mission.comment_a} name="あだく" />
+          <div id="ourComments">
+            <OurCommentParts game={game} icon={`sack_icon_${game.status !== 7 ? "normal" : mission.sack_icon_color}.jpg`} comments={mission.comment_s} name="さっく" />
+            <OurCommentParts game={game} icon="adaku_icon.jpg" comments={mission.comment_a} name="あだく" />
+          </div>
         </>
       )
     } else {
       return (
         <>
-          <OurCommentParts game={game} icon="adaku_icon.jpg" comments={mission.comment_a} name="あだく" />
-          <OurCommentParts game={game} icon={`sack_icon_${game.status !== 7 ? "normal" : mission.sack_icon_color}.jpg`} comments={mission.comment_s} name="さっく" />
+          <div id="ourComments">
+            <OurCommentParts game={game} icon="adaku_icon.jpg" comments={mission.comment_a} name="あだく" />
+            <OurCommentParts game={game} icon={`sack_icon_${game.status !== 7 ? "normal" : mission.sack_icon_color}.jpg`} comments={mission.comment_s} name="さっく" />
+          </div>
         </>
       )
     }

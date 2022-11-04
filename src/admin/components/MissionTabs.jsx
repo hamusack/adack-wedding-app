@@ -268,7 +268,15 @@ const MissionTabs = ({ game, missions, answereds, users }) => {
       const { id, ...updateMission } = mission;
       await updateDoc(missionRef, updateMission);
     } else {
-      await addDoc(collection(db, "missions"), { ...mission,createTime: serverTimestamp() });
+      await addDoc(collection(db, "missions"),
+        {
+          ...mission,
+          createTime: serverTimestamp(),
+          comment_s: "",
+          comment_a: "",
+          comment_sort: 0,
+          sack_icon_color: "normal"
+        });
     }
   }
 

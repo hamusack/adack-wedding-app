@@ -87,11 +87,11 @@ const Mission = ({ missions, answereds, game }) => {
   },[answered])
 
   const clearMission = async (text = null) => {
-    await addDoc(collection(db, "answered"), createAnswerdRecord(mission, authInfo.userId,authInfo.table, text, true));
+    await addDoc(collection(db, "answered"), createAnswerdRecord(mission, authInfo.userId, authInfo.table, text, true));
   }
 
   const clearMissionWithDocumentId = async (text = null) => {
-    await clearMission();
+    await setDoc(doc(db, "answered", authInfo.userId), createAnswerdRecord(mission, authInfo.userId ,authInfo.table, text, true));
     await setDoc(doc(db, "answered", "push_button_clear"), createAnswerdRecord(mission, "", "", text, true));
   }
 
@@ -125,6 +125,7 @@ const Mission = ({ missions, answereds, game }) => {
 
   const handleDialogClose = () => {
     setDialogInfo(prev => {
+      document.getElementById("ourComments").scrollIntoView();
       return {...prev, open: false}
     });
   }

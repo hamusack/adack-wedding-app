@@ -84,7 +84,7 @@ const Push = ({ game, mission, clearMission, setDialogInfo, answered, setBackBut
     if (buttonSize < CLEAR_COUNT) {
       return;
     } else {
-      if (isClear) {
+      if (!isClear) {
         setIsClear(true);
         clearMission();
       }

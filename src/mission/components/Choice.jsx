@@ -63,7 +63,7 @@ const Choice = ({ game, mission, clearMission, failedMission, setDialogInfo, ans
   useEffect(() => {
     if (answered !== null && Object.keys(answered).length !== 0) {
       setChoiceBtn(answered.text);
-      if (answered.text !== mission.answer) {
+      if (answered.text !== mission.answer && mission.missionType !== 0) {
         setCorrectBtn(mission.answer);
       }
     } else if (game.status >= 4) {
