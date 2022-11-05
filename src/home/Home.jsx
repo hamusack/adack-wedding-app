@@ -24,7 +24,7 @@ const Home = ({ game, missions, answereds }) => {
   } else {
     return (
       <>
-        <img id="homeCartain" src={`${process.env.PUBLIC_URL}/images/cartain.png`} alt="謎"></img>
+        <img id="homeCartain" src={`${process.env.PUBLIC_URL}/images/cartain_new.png`} alt="cartain"></img>
         <Header answereds={answereds} authInfo={authInfo}></Header>
         <div className="mainContainer">
           {

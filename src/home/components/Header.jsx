@@ -14,7 +14,7 @@ const Header = ({ answereds, authInfo }) => {
         {/* <div className="heading07" data-en={"Table " + authInfo.table} id="table"></div> */}
         <div className="heading07" data-en={"Table " + authInfo.table + "!"} id="name">{authInfo.name}<span className="smallFont">さん</span></div>
         <div id="point">個人ポイント：{point.point} pt</div>
-        <img id="headerDeco" src={`${process.env.PUBLIC_URL}/images/header_deco.png`} alt="deco"></img>
+        <img id="headerDeco" src={`${process.env.PUBLIC_URL}/images/header_deco_new.png`} alt="deco"></img>
       </div>
     </>
   );
