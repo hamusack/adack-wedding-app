@@ -141,3 +141,8 @@
     padding: 12px; /* 吹き出し内の上下左右の余白を-6px */
   }
 }
+
+.sb-txt a {
+  color:skyblue;
+
+}

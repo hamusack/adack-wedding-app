@@ -1,3 +1,5 @@
+import { breadcrumbsClasses } from "@mui/material";
+
 const OurCommentParts = ({ game, icon, comments, name }) => {
   const onClick = (e) => {
     if (game.status === 7 && name=== "さっく") {
@@ -8,14 +10,14 @@ const OurCommentParts = ({ game, icon, comments, name }) => {
     }
   }
   const createMarkup = () => {
-    return { __html: comments };
+    return { __html: comments.replace(/(\r\n|\r|\n)/g, '<br>')  };
   };
   return (
     <>
       {comments !== "" ? (
         <div className="CommentContainer">
 
-        <div className="sb-box">
+          <div className="sb-box">
             <div className="icon-img icon-img-left">
               <img src={`${process.env.PUBLIC_URL}/images/${icon}`} alt={name} style={{ width: 70, height: 70 }} onClick={onClick}></img>
             </div>
