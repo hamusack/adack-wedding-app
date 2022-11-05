@@ -3,7 +3,7 @@ import 'mission/components/css/Extra.css';
 import MissionSendButton from "./parts/MissionSendButton";
 import OurCommentParts from "./OurCommentParts";
 
-const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear }) => {
+const Extra = ({ game, mission, clearMission, exClearMission, setDialogInfo, answered, isExClear }) => {
   const WRONG_TEXT = "不正解！";
   const [answer, setAnswer] = useState("");
 
@@ -18,8 +18,10 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
 
   useEffect(() => {
     if (isExClear) {
+      exClearMission()
       document.getElementById("endingComment").scrollIntoView();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isExClear])
 
 
@@ -70,8 +72,8 @@ const Extra = ({ game, mission, clearMission, setDialogInfo, answered, isExClear
           <div className="staffTitle">Webシステム</div><div class="staffNameList">和田 匠（ぬるー）<br/>松村 聡士（さっく）</div>
           <div className="staffTitle">Webデザイン</div><div class="staffNameList">杉本 美菜子（あだく）<br/>松村 聡士（さっく）</div>
           <div className="staffTitle">ミッション制作</div><div class="staffNameList">零狐春</div>
-          <div className="staffTitle">Ex謎制作</div><div class="staffNameList">松村 聡士（さっく）<br/> 杉本 美菜子（あだく）</div>
           <div className="staffTitle">デバッグ</div><div class="staffNameList">江戸川<br/>傘猫<br/>をわ<br/>無策師<br/>けーおん
+          <div className="staffTitle">Ex謎制作</div><div class="staffNameList">松村 聡士（さっく）<br/> 杉本 美菜子（あだく）</div>
           <br/><br/></div>
         </>
       );

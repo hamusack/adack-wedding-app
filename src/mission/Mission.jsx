@@ -1,5 +1,5 @@
 import { db } from 'common/Firebase'
-import { doc , setDoc , addDoc, collection} from 'firebase/firestore'
+import { doc , setDoc , addDoc, collection, serverTimestamp} from 'firebase/firestore'
 import { useState, useEffect, useContext } from 'react';
 import MaskDialog from 'common/components/MaskDialog'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -90,6 +90,20 @@ const Mission = ({ missions, answereds, game }) => {
     await addDoc(collection(db, "answered"), createAnswerdRecord(mission, authInfo.userId, authInfo.table, text, true));
   }
 
+  const exClearMission = async () => {
+    await addDoc(collection(db, "answered"),
+      {
+      mission: mission.id,
+      user: authInfo.userId,
+      table: null ,
+      point: 0 ,
+      text: 'ExClear',
+      createdAt: serverTimestamp(),
+      missionType: mission.missionType
+      }
+    );
+  }
+
   const clearMissionWithDocumentId = async (text = null) => {
     await setDoc(doc(db, "answered", authInfo.userId), createAnswerdRecord(mission, authInfo.userId ,authInfo.table, text, true));
     await setDoc(doc(db, "answered", "push_button_clear"), createAnswerdRecord(mission, "", "", text, true));
@@ -117,7 +131,7 @@ const Mission = ({ missions, answereds, game }) => {
       case 6:
         return <Staff mission={mission} />;
       case 7:
-        return <Extra game={game} mission={mission} clearMission={clearMission} setDialogInfo={setDialogInfo} answered={answered} isExClear={isExClear} />;
+        return <Extra game={game} mission={mission} clearMission={clearMission} exClearMission={exClearMission} setDialogInfo={setDialogInfo} answered={answered} isExClear={isExClear} />;
           default:
         return "ミッション種別が不明です";
     }

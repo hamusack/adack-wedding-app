@@ -14,7 +14,7 @@ const Home = ({ game, missions, answereds }) => {
   const tutorialMission = missions.filter(mission => mission.missionType === 0);
 
   if (game.status === 0) {
-    return <div className="dispMessageContainer"><div>本日は結婚式に出席していただき、誠にありがとうございます！短い時間ですが、披露宴を是非お楽しみください！</div></div>;
+    return <div className="dispMessageContainer"><div>本日は結婚式にご出席いただき、誠にありがとうございます！短い時間ですが、披露宴を是非お楽しみください！</div></div>;
   } else {
     document.title = "ホーム画面";
   }
