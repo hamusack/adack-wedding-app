@@ -1,5 +1,3 @@
-import { breadcrumbsClasses } from "@mui/material";
-
 const OurCommentParts = ({ game, icon, comments, name }) => {
   const onClick = (e) => {
     if (game.status === 7 && name=== "さっく") {
